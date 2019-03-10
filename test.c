@@ -2,10 +2,16 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <termios.h>
+#include <string.h>
+#include <termcap.h>
 
-int main(void) {
-	char c;
+int		main(void) {
+	char	c;
+	char	*buffer;
+	buffer = malloc(2048);
 	static struct termios oldtio, newtio;
+
+	tgetent(buffer, getenv("TERM"));
 	tcgetattr(0, &oldtio);
 	newtio = oldtio;
 	newtio.c_lflag &= ~ICANON;
@@ -17,31 +23,24 @@ int main(void) {
 	while (1) {
 		c = getchar();
 
-		// is this an escape sequence?
 		if (c == 27) {
-			// "throw away" next two characters which specify escape sequence
-			c = getchar();
-			printf("%c", c);
-			c = getchar();
-			printf("%c\n", c);
+			char key[4];
+			key[0] = 27;
+			key[1] = getchar();
+			key[2] = getchar();
+			key[3] = 0;
+			char * k_up = tgetstr("ku", &buffer);
+
+			if (strcmp(key, k_up) == 0)
+				printf("UP\n");
+
+			if (strcmp(key, "\e[B") == 0)
+				printf("DOWN\n");
 			continue;
 		}
-
-		// if backspace
-		if (c == 0x7f) {
-			// go one char left
-			printf("\b");
-			// overwrite the char with whitespace
-			printf(" ");
-			// go back to "now removed char position"
-			printf("\b");
-			continue;
-		}
-
 		if (c == 'q') {
 			break;
 		}
-		printf("%c", c);
 	}
 	printf("\n");
 	tcsetattr(0, TCSANOW, &oldtio);
