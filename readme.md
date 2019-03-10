@@ -30,3 +30,19 @@ Quelques fonctions à utiliser (ou non)
 * malloc, free
 * read, exit
 * signal
+
+Termcap? Termcap!
+-----------------
+
+C'est deux trucs, le premier est une base de données et l'autre une _library_. Il y a dans cette base de données la descriptions des capacités de centaines de terminaux différents. La _library_ est l'_application programmer's interface_ de la base de données.
+
+Initialization
+--------------
+
+La fonction **tgetent** récupère la description du terminal <code>termtype</code> dans la variable <code>buffer</code>. Les autres fonctions de termcap utilisent en interne ce buffer. La taille de ce dernier est conventionnellement 2048.
+```c
+char	*termtype = getenv("TERM");
+char	buffer[2048];
+
+tgetent(buffer, termtype);
+```
