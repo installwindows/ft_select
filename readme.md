@@ -39,10 +39,25 @@ C'est deux trucs, le premier est une base de données et l'autre une _library_. 
 Initialization
 --------------
 
-La fonction **tgetent** récupère la description du terminal <code>termtype</code> dans la variable <code>buffer</code>. Les autres fonctions de termcap utilisent en interne ce buffer. La taille de ce dernier est conventionnellement 2048.
+La fonction **tgetent** récupère la description du terminal <code>termtype</code> dans la variable <code>buffer</code>. Les autres fonctions de termcap utilisent en interne ce buffer. La taille de ce dernier est conventionnellement 2048. Dans la version Mac, le manuel indique que le _buffer_ est ignoré, donc on peut simplement passer <code>NULL</code> en premier argument.
 ```c
 char	*termtype = getenv("TERM");
-char	buffer[2048];
 
-tgetent(buffer, termtype);
+tgetent(NULL, termtype);
 ```
+S'il n'y a aucune erreur, les fonctions **tgetflag**, **tgetnum**, **tgetstr**, **tgoto** et **tputs** peuvent manupuler le terminal grâce à des mots magiques.
+
+Canonique ou non?
+-----------------
+
+
+
+Termcaps
+--------
+Liste de mots magiques utiles:
+
+Mot magique | Description | Fonction
+--- | --- | ---
+**co** | Screen width in lines | <code>int width = tgetnum("co")</code>
+**li** | Screen height in lines | int height = tgetnum("li")
+

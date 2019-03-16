@@ -34,6 +34,7 @@ int		check_key(const char *key, int code, char *buffer)
 	return r;//(code ? (r && check_key(key, code, buffer)) : r);
 }
 
+
 int		main(void) {
 	char	c;
 	char	key[4];
@@ -67,8 +68,8 @@ int		main(void) {
 
 		if (key[0] == 27) {
 			key[0] = 27;
-			read(0, &key[1], 1);
-			read(0, &key[2], 1);
+			read(0, &key[1], 2);
+			//read(0, &key[2], 1);
 			key[3] = 0;
 			if (check_key(key, KEY_UP, buffer))
 				printf("UP\n");
