@@ -6,16 +6,12 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:13:33 by varnaud           #+#    #+#             */
-/*   Updated: 2019/03/16 18:49:28 by varnaud          ###   ########.fr       */
+/*   Updated: 2019/03/16 20:50:39 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int		ft_putcap(int c)
-{
-	return ((int)write(1, &c, 1));
-}
 
 int		read_key(void)
 {
@@ -30,7 +26,7 @@ int		read_key(void)
 	}
 	return key[0];
 }
-
+/*
 int		ft_select(t_select *list)
 {
 	int			key;
@@ -52,3 +48,4 @@ int		ft_select(t_select *list)
 		update_display();
 	}
 }
+*/

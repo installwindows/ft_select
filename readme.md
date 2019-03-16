@@ -59,5 +59,5 @@ Liste de mots magiques utiles:
 Mot magique | Description | Fonction
 --- | --- | ---
 **co** | Screen width in lines | <code>int width = tgetnum("co")</code>
-**li** | Screen height in lines | int height = tgetnum("li")
+**li** | Screen height in lines | <code>int height = tgetnum("li")</code>
 

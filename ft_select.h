@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2019/03/16 18:11:01 by varnaud          ###   ########.fr       */
+/*   Updated: 2019/03/16 21:02:07 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,29 @@
 typedef struct		s_select
 {
 	char			*arg;
-	int				*selected;
+	int				selected;
 	struct s_select	*prev;
 	struct s_select	*next;
 }					t_select;
+
+typedef struct	s_cur
+{
+	int			x;
+	int			y;
+}				t_cur;
+
+typedef struct	s_term
+{
+	int			width;
+	int			height;
+	t_cur		cur;
+}				t_term;
+
+typedef struct	s_args
+{
+	char		**argv;
+	int			argc;
+	int			longest;
+}				t_args;
 
 #endif
