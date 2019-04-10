@@ -5,6 +5,7 @@
 #include <string.h>
 #include <termcap.h>
 #include "libft.h"
+#include "ft_select.h"
 
 #define SKEY_UP "\e[A"
 #define SKEY_DOWN "\e[B"
@@ -124,6 +125,11 @@ void	loop_input(void)
 		else
 			printf(" %c ", key[0]);
 	}
+}
+
+void	update_display(void)
+{
+	
 }
 
 int		main(void) {

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2019/03/16 21:02:07 by varnaud          ###   ########.fr       */
+/*   Updated: 2019/04/10 16:30:54 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,22 @@ typedef struct	s_args
 	int			argc;
 	int			longest;
 }				t_args;
+
+typedef struct	s_cursor
+{
+	int			c;
+	int			l;
+	int			x;
+	int			y;
+}				t_cursor;
+
+typedef struct	s_element
+{
+	char		*value;
+	int			len;
+	int			selected;
+	int			l;
+	int			c;
+}				t_element;
 
 #endif
