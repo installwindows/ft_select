@@ -1,4 +1,4 @@
-ft_select
+ft\_select
 =========
 
 Utilitaire console utilisant les [termcaps][1] offrant en sélection les arguments qui lui sont passés.
@@ -58,6 +58,20 @@ Liste de mots magiques utiles:
 
 Mot magique | Description | Fonction
 --- | --- | ---
-**co** | Screen width in lines | <code>int width = tgetnum("co")</code>
-**li** | Screen height in lines | <code>int height = tgetnum("li")</code>
+**co** | Screen width in lines | `int width = tgetnum("co")`
+**li** | Screen height in lines | `int height = tgetnum("li")`
+
+
+
+ft\_select
+----------
+
+`main`
+ 1. initialize termcaps
+ 2. start selection loop
+
+`ft_select`
+ 1. update screen
+ 2. read input
+ 3. check for signals
 
