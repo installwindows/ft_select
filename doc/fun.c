@@ -13,6 +13,14 @@ int		is(const char *input, int key_code)
 	return (0);
 }
 
-void	move(t_int key_code)
+void	move(int key_code)
 {
+	if (key_code == KEY_UP)
+		ft_printf("↑");
+	if (key_code == KEY_DOWN)
+		ft_printf("↓");
+	if (key_code == KEY_LEFT)
+		ft_printf("←");
+	if (key_code == KEY_RIGHT)
+		ft_printf("→");
 }

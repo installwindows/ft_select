@@ -2,34 +2,39 @@
 
 void	test_move()
 {
-	char c;
 	// cm: cursor movement
 	// tgoto: set params (width and height)
 	// tputs: write it out to the term
 	tputs(tgoto(tgetstr("cm", NULL), 3, 3), 0, ft_putcap);
 	ft_printf("Hello world\n");
-	read(0, &c, 1);
 }
 
 void	test_moving()
 {
 	char	key[4];
 
-	key[3] = 0;
-	read(0, &key[0], 1);
-	if (key[0] == 27)
+	ft_memset(key, 0, 4);
+	while (key[0] != 'q')
 	{
-		read(0, &key[1], 2);
-		// check the key and do stuff I gueess?
-		if (is(key, "UP"))
-			move("UP");
+		read(0, &key[0], 1);
+		if (key[0] == 27)
+		{
+			read(0, &key[1], 2);
+			// check the key and do stuff I gueess?
+			if (is(key, KEY_UP))
+				move(KEY_UP);
+			if (is(key, KEY_DOWN))
+				move(KEY_DOWN);
+			if (is(key, KEY_LEFT))
+				move(KEY_LEFT);
+			if (is(key, KEY_RIGHT))
+				move(KEY_RIGHT);
+		}
 	}
 }
 
 int		main(void) {
 	struct termios	oldtio;
-	int				screen_width;
-	int				screen_height;
 	t_term			term;
 
 	init_termcap();
