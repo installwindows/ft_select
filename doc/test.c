@@ -17,8 +17,7 @@
 #define KEY_RIGHT (1 << 2)
 #define KEY_LEFT (1 << 3)
 
-void	init_termcap(void)
-{
+void	init_termcap(void) {
 	char	term_buffer[2048];
 	char	*term_type;
 	int		r;
