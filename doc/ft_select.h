@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/08 00:05:13 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/08 01:34:07 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ void			init_termcap(void);
 struct termios	initialize_terminal(void);
 int				ft_putcap(int c);
 int				is(const char *input, int key_code);
-void			move(int key_code);
+void			move(int key_code, t_term *term);
+void			move_cursor(int x, int y, t_term *term);
 
 
 #endif
