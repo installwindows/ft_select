@@ -38,6 +38,7 @@ int		main(void) {
 
 	init_termcap();
 	oldtio = initialize_terminal();
+	tputs(tgetstr("ti", NULL), 42, ft_putcap);
 	term.height = tgetnum("li");
 	term.width = tgetnum("co");
 	term.cur.x = 0;
@@ -48,6 +49,7 @@ int		main(void) {
 	tputs(tgetstr("cl", NULL), 42, ft_putcap);
 	/* test_move(); */
 	test_moving(&term);
+	tputs(tgetstr("te", NULL), 42, ft_putcap);
 	tcsetattr(0, TCSANOW, &oldtio);
 	return 0;
 }
