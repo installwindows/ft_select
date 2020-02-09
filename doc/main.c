@@ -1,5 +1,35 @@
 #include "ft_select.h"
 
+void	test_esc(t_term *term)
+{
+	char	key[4];
+	int		i;
+
+	i = 0;
+	ft_memset(key, 0, 4);
+	while (key[0] != 'q')
+	{
+		ft_memset(key, 0, 4);
+		read(0, &key[0], 3);
+		if (key[0] == '\e')
+		{
+			if (is(key, KEY_UP))
+				move(KEY_UP, term);
+			else if (is(key, KEY_DOWN))
+				move(KEY_DOWN, term);
+			else if (is(key, KEY_LEFT))
+				move(KEY_LEFT, term);
+			else if (is(key, KEY_RIGHT))
+				move(KEY_RIGHT, term);
+			else
+			{
+				// It was either only esc or another key?
+				print_status("%s %d\n", "Esc count: ", ++i);
+			}
+		}
+	}
+}
+
 void	test_move()
 {
 	// cm: cursor movement
@@ -51,7 +81,8 @@ int		main(void) {
 	// Clear screen and put cursor at top left corner
 	tputs(tgetstr("cl", NULL), 42, ft_putcap);
 	/* test_move(); */
-	test_moving(&term);
+	/* test_moving(&term); */
+	test_esc(&term);
 	// Reset the cursor to visible
 	tputs(tgetstr("ve", NULL), 42, ft_putcap);
 	// Reset the terminal into nomal mode
