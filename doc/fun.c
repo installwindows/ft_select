@@ -1,4 +1,14 @@
+#include <stdarg.h>
 #include "ft_select.h"
+
+void	print_status(const char *fmt, ...)
+{
+	va_list	va;
+	tputs(tgoto(tgetstr("cm", NULL), 0, 0), 0, ft_putcap);
+	va_start(va, fmt);
+	ft_vdprintf(0, fmt, va);
+	va_end(va);
+}
 
 int		is(const char *input, int key_code)
 {
