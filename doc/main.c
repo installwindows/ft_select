@@ -24,7 +24,7 @@ void	test_esc(t_term *term)
 			else
 			{
 				// It was either only esc or another key?
-				print_status("%s %d\n", "Esc count: ", ++i);
+				print_status("ESC: %2x %2x %2x (%d)\n", key[1], key[2], key[3], ++i);
 			}
 		}
 	}
