@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/10 18:30:03 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/10 19:16:37 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct		s_ft_select
 {
 	t_term			term;
 	t_word			**words;
+	int				longest_word;
 }					t_ft_select;
 
 #endif
