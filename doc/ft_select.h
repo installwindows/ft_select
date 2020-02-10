@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2019/04/10 16:30:54 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/09 01:37:47 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,20 @@
 
 # include <term.h>
 # include "libft.h"
-# define KEY_UP (1 << 0)
-# define KEY_DOWN (1 << 1)
-# define KEY_LEFT (1 << 2)
-# define KEY_RIGHT (1 << 3)
+# define KEY_UP 1
+# define KEY_DOWN 2
+# define KEY_LEFT 3
+# define KEY_RIGHT 4
+# define KEY_ENTER 5
+# define KEY_SPACE 6
+# define T_KEY_UP tgetstr("ku", NULL)
+# define T_KEY_DOWN tgetstr("kd", NULL)
+# define T_KEY_LEFT tgetstr("kl", NULL)
+# define T_KEY_RIGHT tgetstr("kr", NULL)
+# define T_T_KEY_UP "\e[A"
+# define T_T_KEY_DOWN "\e[B"
+# define T_T_KEY_RIGHT "\e[C"
+# define T_T_KEY_LEFT "\e[D"
 
 typedef struct		s_select
 {
@@ -64,5 +74,14 @@ typedef struct	s_element
 	int			l;
 	int			c;
 }				t_element;
+
+void			init_termcap(void);
+struct termios	initialize_terminal(void);
+int				ft_putcap(int c);
+int				is(const char *input, int key_code);
+void			move(int key_code, t_term *term);
+void			move_cursor(int x, int y, t_term *term);
+void			print_status(const char *str, ...);
+
 
 #endif
