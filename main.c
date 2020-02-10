@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:28:56 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/10 19:34:16 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/10 21:19:54 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,6 @@ t_word	*add_word(char *value)
 	word->len = ft_strlen(value);
 	word->value = value;
 	return (word);
-}
-
-void	dummy_print_words(t_word **words)
-{
-	while (*words)
-	{
-		ft_printf("%s %d\n", (*words)->value, (*words)->len);
-		words++;
-	}
 }
 
 void	free_words(t_word **words)
@@ -67,5 +58,9 @@ int		main(int argc, char **argv)
 		dummy_print_words(words);
 		free_words(words);
 	}
+	init_termcap(&fts);
+	initialize_terminal(&fts);
+	read(0, &i, 1);
+	reset_terminal(&fts);
 	return (0);
 }
