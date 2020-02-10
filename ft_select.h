@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2019/04/10 16:30:54 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/10 18:30:03 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@
 # define KEY_LEFT (1 << 2)
 # define KEY_RIGHT (1 << 3)
 
-typedef struct		s_select
+typedef struct		s_word
 {
-	char			*arg;
+	int				deleted;
 	int				selected;
-	struct s_select	*prev;
-	struct s_select	*next;
-}					t_select;
+	int				len;
+	char			*value;
+}					t_word;
 
 typedef struct	s_cur
 {
@@ -41,28 +41,10 @@ typedef struct	s_term
 	t_cur		cur;
 }				t_term;
 
-typedef struct	s_args
+typedef struct		s_ft_select
 {
-	char		**argv;
-	int			argc;
-	int			longest;
-}				t_args;
-
-typedef struct	s_cursor
-{
-	int			c;
-	int			l;
-	int			x;
-	int			y;
-}				t_cursor;
-
-typedef struct	s_element
-{
-	char		*value;
-	int			len;
-	int			selected;
-	int			l;
-	int			c;
-}				t_element;
+	t_term			term;
+	t_word			**words;
+}					t_ft_select;
 
 #endif

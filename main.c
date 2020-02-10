@@ -3,118 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: varnaud <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/16 17:49:10 by varnaud           #+#    #+#             */
-/*   Updated: 2019/03/16 23:59:47 by varnaud          ###   ########.fr       */
+/*   Created: 2020/02/10 17:28:56 by varnaud           #+#    #+#             */
+/*   Updated: 2020/02/10 18:30:07 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void	init_termcap(void)
+t_word	*add_word(char *value)
 {
-	char	term_buffer[2048];
-	char	*term_type;
-	int		r;
+	t_word	*word;
 
-	term_type = getenv("TERM");
-	if (term_type == NULL)
+	word = ft_memalloc(sizeof(t_word));
+	word->len = ft_strlen(value);
+	word->value = value;
+	return (word);
+}
+
+void	dummy_print_words(t_word **words)
+{
+	while (*words)
 	{
-		ft_fprintf(2, "Environment variable TERM not set.\n");
-		exit(1);
-	}
-	r = tgetent(term_buffer, term_type);
-	if (r < 0)
-	{
-		ft_fprintf(2, "Could not access the termcap database\n");
-		exit(1);
-	}
-	else if (r == 0)
-	{
-		ft_fprintf(2, "Terminal type `%s` is not defined.\n", term_type);
-		exit(1);
+		ft_printf("%s %d\n", (*words)->value, (*words)->len);
+		words++;
 	}
 }
 
-t_select	*init_list(int argc, char **argv)
+void	free_words(t_word **words)
 {
-	int			i;
-	t_select	*head;
-	t_select	*prev;
-	t_select	*cur;
+	t_word	**tmp;
 
-	head = NULL;
-	cur = NULL;
-	prev = NULL;
-	i = 1;
-	while (i < argc)
+	tmp = words;
+	while (*tmp)
 	{
-		cur = (t_select*)ft_memalloc(sizeof(t_select));
-		cur->arg = argv[i];
-		cur->selected = 0;
-		if (!head)
-			head = cur;
-		if (prev)
-			prev->next = cur;
-		cur->prev = prev;
-		prev = cur;
-		i++;
+		free(*tmp);
+		tmp++;
 	}
-	return (head);
-}
-
-int		ft_putcap(int c)
-{
-	return ((int)write(1, &c, 1));
-}
-ssize_t	putstr(const char *str)
-{
-	ssize_t		len;
-
-	len = ft_strlen(str);
-	if (len > 0)
-		write(0, str, len);
-	return len;
-}
-void	print_list(t_select *list)
-{
-//	int		width = tgetnum("co");
-	int		height = tgetnum("li");
-	t_cur	cur;
-	
-	cur.x = 0;
-	cur.y = 0;
-	tputs(tgetstr("cl", NULL), height, ft_putcap);
-	tputs(tgoto(tgetstr("cm", NULL), cur.x, cur.y), 1, ft_putcap);
-	while (list)
-	{
-		putstr(list->arg);
-		putstr(" ");
-		list = list->next;
-	}
+	free(words);
 }
 
 int		main(int argc, char **argv)
 {
-	t_select	*list;
-
-	if (argc < 2)
-		return 0;
-	list = init_list(argc, argv);
-	/*
-	while (list)
+	t_word	**words;
+	int		i;
+	// Array or linked list?
+	// Array!
+	if (argc > 1)
 	{
-		printf("%s\n", list->arg);
-		if (list->prev)
-			printf("prev: %s\n", list->prev->arg);
-		list = list->next;
+		words = ft_memalloc(sizeof(t_word*) * argc);
+		i = 0;
+		while (--argc)
+		{
+			words[i++] = add_word(*++argv);
+		}
+		dummy_print_words(words);
+		free_words(words);
 	}
-	*/
-	init_termcap();
-	print_list(list);
-	read(0, &argc, 1);
-	//tputs(tgetstr("cl", NULL), 11, putchar);
-	//tputs(tgoto(tgetstr("cm", NULL), 5, 5), 1, ft_putcap);
-	//ft_printf("%dx%d\n", tgetnum("co"), tgetnum("li"));
+	return (0);
 }
