@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:28:56 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/10 21:19:54 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/10 21:29:23 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		main(int argc, char **argv)
 	}
 	init_termcap(&fts);
 	initialize_terminal(&fts);
-	read(0, &i, 1);
+	ft_select(&fts);
 	reset_terminal(&fts);
 	return (0);
 }
