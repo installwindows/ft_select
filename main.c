@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:28:56 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/10 21:29:23 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/14 15:18:03 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ int		main(int argc, char **argv)
 			i++;
 		}
 		fts.words = words;
-		ft_printf("Longest word len: %d\n", fts.longest_word);
-		dummy_print_words(words);
-		free_words(words);
+		/* ft_printf("Longest word len: %d\n", fts.longest_word); */
+		/* dummy_print_words(words); */
+		/* free_words(words); */
 	}
 	init_termcap(&fts);
 	initialize_terminal(&fts);
