@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/15 20:05:02 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/15 22:00:57 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 # include <signal.h>
 # include <sys/ioctl.h>
 # include "libft.h"
+# define T_KEY_UP tgetstr("ku", NULL)
+# define T_KEY_DOWN tgetstr("kd", NULL)
+# define T_KEY_LEFT tgetstr("kl", NULL)
+# define T_KEY_RIGHT tgetstr("kr", NULL)
+# define T_T_KEY_UP "\e[A"
+# define T_T_KEY_DOWN "\e[B"
+# define T_T_KEY_RIGHT "\e[C"
+# define T_T_KEY_LEFT "\e[D"
 # define KEY_UP (1 << 0)
 # define KEY_DOWN (1 << 1)
 # define KEY_LEFT (1 << 2)
@@ -29,30 +37,43 @@ typedef struct		s_word
 {
 	int				deleted;
 	int				selected;
+	int				current;
 	int				len;
 	char			*value;
 }					t_word;
 
 typedef struct		s_cur
 {
-	int				x;
-	int				y;
+	int				r;
+	int				c;
 }					t_cur;
 
 typedef struct		s_term
 {
 	int				width;
 	int				height;
-	t_cur			cur;
 	struct termios	oldtio;
 	struct termios	newtio;
 	char			*mw[16];
 }					t_term;
 
+typedef struct		s_display
+{
+	int				wc_max;
+	int				wr_max;
+	int				wc;
+	int				wr;
+	int				nbp;
+	int				p;
+	t_cur			cur;
+}					t_display;
+
 typedef struct		s_ft_select
 {
 	t_term			term;
 	t_word			**words;
+	t_cur			cur;
+	t_display		display;
 	int				nbw;
 	int				lgw;
 }					t_ft_select; 

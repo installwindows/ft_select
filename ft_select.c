@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/15 20:15:57 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/15 22:09:16 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,19 @@ int		update_display(t_ft_select *fts)
 	return (0);
 }
 
+int		is(const char *input, int key_code)
+{
+	if (key_code == KEY_UP)
+		return !strcmp(input, T_KEY_UP) || !strcmp(input, T_T_KEY_UP);
+	else if (key_code == KEY_DOWN)
+		return !strcmp(input, T_KEY_DOWN) || !strcmp(input, T_T_KEY_DOWN);
+	else if (key_code == KEY_LEFT)
+		return !strcmp(input, T_KEY_LEFT) || !strcmp(input, T_T_KEY_LEFT);
+	else if (key_code == KEY_RIGHT)
+		return !strcmp(input, T_KEY_RIGHT) || !strcmp(input, T_T_KEY_RIGHT);
+	return (0);
+}
+
 void	ft_select(t_ft_select *fts)
 {
 	char	key[4];
@@ -41,6 +54,16 @@ void	ft_select(t_ft_select *fts)
 		read(1, &key, 3);
 		if (key[0] == '\e')
 		{
+			// TODO: check movement
+			// c * nwr + r
+			if (is(key, KEY_UP))
+				move(KEY_UP, fts);
+			else if (is(key, KEY_DOWN))
+				move(KEY_DOWN, fts);
+			else if (is(key, KEY_LEFT))
+				move(KEY_LEFT, fts);
+			else if (is(key, KEY_RIGHT))
+				move(KEY_RIGHT, fts);
 			update_display(fts);
 			ft_memset(&key, 0, 4);
 		}
