@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:28:56 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/15 18:49:55 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/15 19:36:14 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,11 @@ int				main(int argc, char **argv)
 		while (--argc)
 		{
 			words[i] = add_word(*++argv);
-			if (words[i]->len > fts.longest_word)
-				fts.longest_word = words[i]->len;
+			if (words[i]->len > fts.lgw)
+				fts.lgw = words[i]->len;
 			i++;
 		}
+		fts.nbw = i;
 		fts.words = words;
 		init_signals();
 		init_termcap(&fts);
