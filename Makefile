@@ -6,12 +6,12 @@
 #    By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/28 21:10:31 by varnaud           #+#    #+#              #
-#    Updated: 2020/02/10 22:03:40 by varnaud          ###   ########.fr        #
+#    Updated: 2020/02/15 18:44:30 by varnaud          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME=ft_select
-SRC=main.c control.c fun.c init.c printer.c utils.c ft_select.c
+SRC=main.c control.c fun.c init.c printer.c utils.c ft_select.c signal.c
 OBJ=$(SRC:.c=.o)
 CC=gcc
 CFLAGS=-Wall -Werror -Wextra -g -Ilibft

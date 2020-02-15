@@ -6,13 +6,13 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:28:56 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/14 15:18:03 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/15 18:49:55 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-t_word	*add_word(char *value)
+static t_word	*add_word(char *value)
 {
 	t_word	*word;
 
@@ -22,7 +22,7 @@ t_word	*add_word(char *value)
 	return (word);
 }
 
-void	free_words(t_word **words)
+static void		free_words(t_word **words)
 {
 	t_word	**tmp;
 
@@ -35,15 +35,22 @@ void	free_words(t_word **words)
 	free(words);
 }
 
-int		main(int argc, char **argv)
+void			clean_exit(t_ft_select *fts)
+{
+	free_words(fts->words);
+	reset_terminal(fts);
+	exit(0);
+}
+
+int				main(int argc, char **argv)
 {
 	t_word		**words;
 	t_ft_select	fts;
 	int		i;
 	
-	ft_memset(&fts, 0, sizeof(t_ft_select));
 	if (argc > 1)
 	{
+		ft_memset(&fts, 0, sizeof(t_ft_select));
 		words = ft_memalloc(sizeof(t_word*) * argc);
 		i = 0;
 		while (--argc)
@@ -54,13 +61,11 @@ int		main(int argc, char **argv)
 			i++;
 		}
 		fts.words = words;
-		/* ft_printf("Longest word len: %d\n", fts.longest_word); */
-		/* dummy_print_words(words); */
-		/* free_words(words); */
+		init_signals();
+		init_termcap(&fts);
+		initialize_terminal(&fts);
+		ft_select(&fts);
+		reset_terminal(&fts);
 	}
-	init_termcap(&fts);
-	initialize_terminal(&fts);
-	ft_select(&fts);
-	reset_terminal(&fts);
 	return (0);
 }
