@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/16 01:32:05 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/16 23:09:05 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct		s_word
 	int				current;
 	int				len;
 	char			*value;
+	struct s_word	*next;
 }					t_word;
 
 typedef struct		s_cur
@@ -68,13 +69,40 @@ typedef struct		s_display
 	t_cur			cur;
 }					t_display;
 
+typedef struct		s_case
+{
+	t_word			*word;
+	int				x;
+	int				y;
+	int				current;
+}					t_case;
+
+typedef struct		s_book
+{
+	t_word			*words;
+	int				rows;
+	int				cols;
+	int				pages;
+}					t_book;
+
+typedef struct		s_page
+{
+	t_case			**cases;
+	int				page_no;
+	int				rows;
+	int				cols;
+	int				start;
+}					t_page;
+
 typedef struct		s_ft_select
 {
 	t_term			term;
 	t_word			**words;
+	t_word			*words_list;
 	t_cur			cur;
 	t_display		display;
 	t_word			*current_word;
+	t_book			*book;
 	int				nbw;
 	int				lgw;
 }					t_ft_select; 
