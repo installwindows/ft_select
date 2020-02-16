@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 19:38:41 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/15 19:01:20 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/16 02:05:08 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	initialize_terminal(t_ft_select *fts)
 	fts->term.newtio.c_lflag &= ~ICANON;
 	fts->term.newtio.c_lflag &= ~ECHO;
 	fts->term.newtio.c_cc[VMIN] = 0;
-	fts->term.newtio.c_cc[VTIME] = 1;
+	fts->term.newtio.c_cc[VTIME] = 2;
 	fts->term.newtio.c_oflag &= ~OPOST;
 	tcsetattr(0, TCSANOW, &fts->term.newtio);
 	tputs(tgetstr("ti", NULL), 42, ft_putcap);

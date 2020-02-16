@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:11:33 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/15 20:15:19 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/16 01:57:03 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,18 @@ void	basic_printer(t_ft_select *fts, int wc, int wr, int nbp)
 		while (j < wr)
 		{
 			tputs(tgoto(tgetstr("cm", NULL), fts->lgw * i + 1, j), 0, ft_putcap);
-			ft_printf("%s", fts->words[w++]->value);
+			if (fts->words[w]->selected)
+				tputs(tgetstr("so", NULL), 0, ft_putcap);
+			ft_printf("%s", fts->words[w]->value);
+			if (fts->words[w]->selected)
+				tputs(tgetstr("se", NULL), 0, ft_putcap);
+			w++;
 			if (w >= fts->nbw)
 				return ;
 			j++;
 		}
 		i++;
 	}
-	nbp = 0; // TODO: pagination
+	if (nbp) // TODO: pagination
+		nbp = 0;
 }

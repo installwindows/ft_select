@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/15 22:00:57 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/16 01:32:05 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct		s_ft_select
 	t_word			**words;
 	t_cur			cur;
 	t_display		display;
+	t_word			*current_word;
 	int				nbw;
 	int				lgw;
 }					t_ft_select; 
@@ -90,6 +91,7 @@ void	dummy_print_words(t_word **);
 void	print_words(t_ft_select *);
 void	basic_printer(t_ft_select *, int, int, int);
 int		update_display(t_ft_select *);
+void	basic_move(int, t_ft_select *);
 
 void	clean_exit(t_ft_select *);
 

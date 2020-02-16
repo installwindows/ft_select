@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/15 22:09:16 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/16 02:10:54 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int		update_display(t_ft_select *fts)
 	nbwc = fts->term.width / (fts->lgw + FTS_MARGIN);
 	nbwr = fts->term.height / 2 - 1;
 	nbp = fts->nbw / (nbwc + nbwr);
+	fts->display.wc = nbwc;
+	fts->display.wr = nbwr;
 	tputs(tgoto(tgetstr("cm", NULL), 0, 0), 0, ft_putcap);
 	/* ft_printf("nbwc: %d x nbwr %d x nbp %d", nbwc, nbwr, nbp); */
 	basic_printer(fts, nbwc, nbwr, nbp);
@@ -57,14 +59,15 @@ void	ft_select(t_ft_select *fts)
 			// TODO: check movement
 			// c * nwr + r
 			if (is(key, KEY_UP))
-				move(KEY_UP, fts);
+				basic_move(KEY_UP, fts);
 			else if (is(key, KEY_DOWN))
-				move(KEY_DOWN, fts);
+				basic_move(KEY_DOWN, fts);
 			else if (is(key, KEY_LEFT))
-				move(KEY_LEFT, fts);
+				basic_move(KEY_LEFT, fts);
 			else if (is(key, KEY_RIGHT))
-				move(KEY_RIGHT, fts);
+				basic_move(KEY_RIGHT, fts);
 			update_display(fts);
+			/* ft_printf("%x%x%x", key[0],key[1],key[2]); */
 			ft_memset(&key, 0, 4);
 		}
 		check_signals(fts);

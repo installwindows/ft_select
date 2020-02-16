@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:28:56 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/15 19:36:14 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/16 02:00:01 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int				main(int argc, char **argv)
 		}
 		fts.nbw = i;
 		fts.words = words;
+		fts.current_word = words[0];
+		fts.current_word->selected = 1;
 		init_signals();
 		init_termcap(&fts);
 		initialize_terminal(&fts);
