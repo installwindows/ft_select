@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/17 17:51:39 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/17 22:01:19 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,23 +77,35 @@ typedef struct		s_case
 	int				current;
 }					t_case;
 
-typedef struct		s_book
-{
-	t_word			*words;
-	int				rows;
-	int				cols;
-	int				pages;
-}					t_book;
-
 typedef struct		s_page
 {
-	t_case			**cases;
+	t_case			***cases;
+	int				x;
+	int				y;
+	int				lgw;
 	int				page_no;
 	int				rows;
 	int				cols;
 	int				max_words;
 	int				start;
+	struct s_page	*next;
 }					t_page;
+
+typedef struct		s_book
+{
+	t_word			*word_list;
+	int				word_list_size;
+	int				longest_word;
+	int				xw_max;
+	int				yw_max;
+	int				xw;
+	int				yw;
+	int				rows;
+	int				cols;
+	int				nb_page;
+	int				current_page;
+	t_page			*pages;
+}					t_book;
 
 typedef struct		s_ft_select
 {
@@ -103,7 +115,7 @@ typedef struct		s_ft_select
 	t_cur			cur;
 	t_display		display;
 	t_word			*current_word;
-	t_book			*book;
+	t_book			book;
 	int				nbw;
 	int				lgw;
 }					t_ft_select; 
@@ -113,15 +125,18 @@ t_word	*create_words_list(int, char **);
 void	free_words(t_word *);
 t_word	*add_word(char *);
 t_word	*delete_word(t_word *, t_word *);
+int		get_word_list_size(t_word *);
 // init.c
 void	initialize_terminal(t_ft_select *);
 int		init_termcap(t_ft_select *);
 void	reset_terminal(t_ft_select *);
+t_word	*get_word_no(t_word *, int);
 // signal.c
 void	init_signals(void);
 void	check_signals(t_ft_select *);
 // utils.c
 int		ft_putcap(int);
+int		get_longest_word(t_word *words);
 // ft_select.c
 void	ft_select(t_ft_select *);
 int		update_display(t_ft_select *);

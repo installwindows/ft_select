@@ -9,17 +9,6 @@ void	print_list(t_word *words)
 	}
 }
 
-t_word	*get_word_no(t_word *list, int no)
-{
-	if (no >= 0)
-	{
-		while (--no && list)
-			list = list->next;
-		return list;
-	}
-	return (NULL);
-}
-
 int main()
 {
 	int argc = 6;
