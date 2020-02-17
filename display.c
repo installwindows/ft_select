@@ -6,23 +6,47 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 21:23:13 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/17 22:05:39 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/17 22:46:34 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-// return a 2d array of t_case
-static t_case	***get_cases(t_book *book, t_ft_select *fts, int min, int max)
+// set the x, y position of the box on the screen (x and y represent characters position)
+static void		set_case(t_case *box, t_word *word, int x, int y, t_book *book)
 {
-	t_case	***cases;
+	box->word = word;
+	box->x = 
+}
+
+// return a 2d array of t_case
+static t_case	**get_cases(t_book *book, t_ft_select *fts, int min, int max)
+{
+	t_case	**cases;
 	t_word	*words;
+	int		x;
+	int		y;
 
 	words = get_word_no(book->word_list, min);
-	while (min < max)
+	cases = (t_case**)ft_memalloc(sizeof(t_case*) * book->yw);
+	x = 0;
+	while (x < book->xw)
+		cases[x++] = (t_case*)ft_memalloc(sizeof(t_case) * book->xw);
+	// TODO: free cases
+	y = 0;
+	x = 0;
+	while (min < max && words)
 	{
-
+		// fill the cases from top to bottom, left to right
+		cases[y][x].word = words;
+		words = words->next;
+		if (x >= book->xw)
+		{
+			y++;
+			x = 0;
+		}
 	}
+	return (cases);
 }
 
 static t_page	*add_page(t_book *book, t_ft_select *fts, int index)
