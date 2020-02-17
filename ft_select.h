@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/16 23:21:52 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/17 17:07:06 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ void	reset_terminal(t_ft_select *);
 int		ft_putcap(int);
 void	ft_select(t_ft_select *);
 
+void	dummy_print_words_list(t_word *words);
 void	dummy_print_words(t_word **);
 void	print_words(t_ft_select *);
 void	basic_printer(t_ft_select *, int, int, int);

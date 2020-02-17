@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:28:56 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/17 01:37:10 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/17 17:19:51 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,55 +22,60 @@ static t_word	*add_word(char *value)
 	return (word);
 }
 
-static void		free_words(t_word **words)
+static void		free_words(t_word *words)
 {
-	t_word	**tmp;
+	t_word	*tmp;
 
-	tmp = words;
-	while (*tmp)
+	while (words)
 	{
-		free(*tmp);
-		tmp++;
+		tmp = words->next;
+		free(words);
+		words = tmp;
 	}
-	free(words);
 }
 
 void			clean_exit(t_ft_select *fts)
 {
-	free_words(fts->words);
+	free_words(fts->words_list);
 	reset_terminal(fts);
 	exit(0);
 }
 
+static t_word	*create_words_list(int argc, char **argv)
+{
+	t_word	*head;
+	t_word	*prev;
+
+	head = NULL;
+	if (argc-- > 1)
+	{
+		head = add_word(*++argv);
+		prev = head;
+		while (--argc)
+		{
+			prev->next = add_word(*++argv);
+			prev = prev->next;
+		}
+	}
+	return (head);
+}
+
 int				main(int argc, char **argv)
 {
-	t_word		**words;
-	t_word		*list;
-	t_word		*next;
 	t_ft_select	fts;
-	int		i;
 	
 	if (argc > 1)
 	{
 		ft_memset(&fts, 0, sizeof(t_ft_select));
-		words = ft_memalloc(sizeof(t_word*) * argc);
-		i = 0;
-		while (--argc)
-		{
-			words[i] = add_word(*++argv);
-			if (words[i]->len > fts.lgw)
-				fts.lgw = words[i]->len;
-			i++;
-		}
-		fts.nbw = i;
-		fts.words = words;
-		fts.current_word = words[0];
-		fts.current_word->selected = 1;
+		fts.words_list = create_words_list(argc, argv);
 		init_signals();
 		init_termcap(&fts);
 		initialize_terminal(&fts);
-		ft_select(&fts);
-		reset_terminal(&fts);
+		dummy_print_words_list(fts.words_list);
+		while (argc != 'q')
+			read(1, &argc, 1);
+		/* ft_select(&fts); */
+		clean_exit(&fts);
 	}
 	return (0);
 }
