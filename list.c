@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 17:22:24 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/17 17:24:44 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/17 17:39:23 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,30 @@ t_word	*create_words_list(int argc, char **argv)
 			prev->next = add_word(*++argv);
 			prev = prev->next;
 		}
+	}
+	return (head);
+}
+
+t_word	*delete_word(t_word *list, t_word *word)
+{
+	t_word	*head;
+
+	head = list;
+	if (head == word)
+	{
+		head = list->next;
+		free(word);
+		return (head);
+	}
+	while (list->next)
+	{
+		if (list->next == word)
+		{
+			list->next = word->next;
+			free(word);
+			break ;
+		}
+		list = list->next;
 	}
 	return (head);
 }

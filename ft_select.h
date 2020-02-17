@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/17 17:28:35 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/17 17:51:39 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ typedef struct		s_ft_select
 t_word	*create_words_list(int, char **);
 void	free_words(t_word *);
 t_word	*add_word(char *);
+t_word	*delete_word(t_word *, t_word *);
 // init.c
 void	initialize_terminal(t_ft_select *);
 int		init_termcap(t_ft_select *);

@@ -6,7 +6,7 @@
 #    By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/28 21:10:31 by varnaud           #+#    #+#              #
-#    Updated: 2020/02/17 17:28:26 by varnaud          ###   ########.fr        #
+#    Updated: 2020/02/17 18:00:03 by varnaud          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CC=gcc
 CFLAGS=-Wall -Werror -Wextra -g -Ilibft -Llibft -lft -ltermcap
 
 
-.PHONY: all clean fclean re test
+.PHONY: all clean fclean re test test_list
 
 all: $(NAME)
 
@@ -25,6 +25,9 @@ $(NAME): libft $(OBJ)
 	$(CC) -o $(NAME) $(OBJ) $(CFLAGS)
 test:
 	$(CC) -o test main.c printer.c init.c signal.c utils.c list.c $(CFLAGS)
+
+test_list:
+	$(CC) -o test_list test_list.c list.c $(CFLAGS)
 
 $(OBJ): ft_select.h
 
