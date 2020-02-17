@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/16 23:09:05 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/16 23:21:52 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct		s_page
 	int				page_no;
 	int				rows;
 	int				cols;
+	int				max_words;
 	int				start;
 }					t_page;
 

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/16 21:54:16 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/16 23:13:21 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/16 23:21:30 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,14 @@ void	set_book(t_ft_select *fts)
 void	set_cases(t_ft_select *fts, t_page *page)
 {
 	t_case	**cases;
-	int		max_words;
+	t_case	*box;
+	t_word	*list;
+	int		i;
 	
 	cases = (t_case**)malloc(sizeof(t_case**));
-	max_words = fts->book->cols * fts->book->rows;
+	list = seek_words(fts->words, page->page_no * page->max_words);
+	i = 0;
+	while (i < 
 
 }
 
@@ -42,9 +46,10 @@ t_page	*get_page(t_ft_select *fts, int page_no, int word_start)
 
 	page = (t_page*)malloc(sizeof(t_page*)); // TODO: free it
 	page->page_no = page_no;
-	page->start = word_start;
+	page->cols = 4;
+	page->rows = 4;
+	page->max_words = page->cols * page->rows;
 	set_cases(fts, page);
-	
 }
 
 void	fill_cases(t_ft_select *fts)

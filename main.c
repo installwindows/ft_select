@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:28:56 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/16 02:00:01 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/17 01:37:10 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void			clean_exit(t_ft_select *fts)
 int				main(int argc, char **argv)
 {
 	t_word		**words;
+	t_word		*list;
+	t_word		*next;
 	t_ft_select	fts;
 	int		i;
 	
