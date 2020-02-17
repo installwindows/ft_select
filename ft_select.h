@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/17 17:07:06 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/17 17:28:35 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,21 +108,30 @@ typedef struct		s_ft_select
 	int				lgw;
 }					t_ft_select; 
 
+// list.c
+t_word	*create_words_list(int, char **);
+void	free_words(t_word *);
+t_word	*add_word(char *);
+// init.c
 void	initialize_terminal(t_ft_select *);
 int		init_termcap(t_ft_select *);
+void	reset_terminal(t_ft_select *);
+// signal.c
 void	init_signals(void);
 void	check_signals(t_ft_select *);
-void	reset_terminal(t_ft_select *);
+// utils.c
 int		ft_putcap(int);
+// ft_select.c
 void	ft_select(t_ft_select *);
-
+int		update_display(t_ft_select *);
+// printer.c
 void	dummy_print_words_list(t_word *words);
 void	dummy_print_words(t_word **);
 void	print_words(t_ft_select *);
 void	basic_printer(t_ft_select *, int, int, int);
-int		update_display(t_ft_select *);
+// move.c
 void	basic_move(int, t_ft_select *);
-
+// main.c
 void	clean_exit(t_ft_select *);
 
 #endif
