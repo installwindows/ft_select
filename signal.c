@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 18:39:35 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/15 18:53:59 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/18 23:17:09 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,13 @@ void		init_signals(void)
 	i = 1;
 	while (i < 32)
 	{
+		if (i != SIGQUIT)
 		signal(i, SIG_IGN);
 		i++;
 	}
 	signal(SIGINT, signal_handler);
 	signal(SIGTSTP, signal_handler);
 	signal(SIGCONT, signal_handler);
-	signal(SIGQUIT, signal_handler);
+	/* signal(SIGQUIT, signal_handler); */
 	signal(SIGWINCH, signal_handler);
 }
