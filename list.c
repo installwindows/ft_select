@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 17:22:24 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/17 21:29:42 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/18 23:36:35 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,13 @@ t_word	*delete_word(t_word *list, t_word *word)
 
 t_word	*get_word_no(t_word *list, int no)
 {
-	if (no >= 0)
+	if (!no)
+		return (list);
+	else if (no > 0)
 	{
-		while (--no && list)
+		while (no-- && list)
 			list = list->next;
-		return list;
+		return (list);
 	}
 	return (NULL);
 }
