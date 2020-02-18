@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 21:23:13 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/18 23:42:35 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/18 23:55:46 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static t_case	**get_cases(t_book *book, int min, int max)
 
 	words = get_word_no(book->word_list, min);
 	cases = (t_case**)ft_memalloc(sizeof(t_case*) * book->yw);
-	x = 0;
-	while (x < book->xw)
-		cases[x++] = (t_case*)ft_memalloc(sizeof(t_case) * book->xw);
+	y = 0;
+	while (y < book->yw)
+		cases[y++] = (t_case*)ft_memalloc(sizeof(t_case) * book->xw);
 	// TODO: free cases
 	y = 0;
 	x = 0;
