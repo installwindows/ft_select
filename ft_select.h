@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/17 22:01:19 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/18 01:21:11 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ typedef struct		s_case
 	t_word			*word;
 	int				x;
 	int				y;
-	int				current;
+	int				active;
 }					t_case;
 
 typedef struct		s_page
 {
-	t_case			***cases;
+	t_case			**cases;
 	int				x;
 	int				y;
 	int				lgw;
@@ -149,5 +149,7 @@ void	basic_printer(t_ft_select *, int, int, int);
 void	basic_move(int, t_ft_select *);
 // main.c
 void	clean_exit(t_ft_select *);
+// display.c
+void	test_display(t_ft_select *);
 
 #endif

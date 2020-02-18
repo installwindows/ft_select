@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:28:56 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/17 17:42:39 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/18 01:26:53 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,12 @@ int		main(int argc, char **argv)
 		init_signals();
 		init_termcap(&fts);
 		initialize_terminal(&fts);
-		dummy_print_words_list(fts.words_list);
+		/* dummy_print_words_list(fts.words_list); */
+		test_display(&fts);
 		while (argc != 'q')
 			read(1, &argc, 1);
 		/* ft_select(&fts); */
-		clean_exit(&fts);
+		/* clean_exit(&fts); */
 	}
 	return (0);
 }
