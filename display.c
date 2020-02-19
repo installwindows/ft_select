@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 21:23:13 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/19 00:12:37 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/20 00:38:05 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 static void		set_case(t_case *box, t_word *word, int x, int y, t_book *book)
 {
 	box->word = word;
-	box->x = x * book->longest_word + 1;
-	box->y = y;
+	box->x = x * book->longest_word + (x + 1) * 2;
+	box->y = (y * 2) + 1;
 	box->active = 1;
 }
 
@@ -58,7 +58,7 @@ static t_page	*add_page(t_book *book, int index)
 	t_page	*page;
 
 	page = (t_page*)ft_memalloc(sizeof(t_page));
-	page->max_words = (book->xw * book->yw) / book->longest_word;
+	page->max_words = book->xw * book->yw;
 	page->page_no = index;
 	page->cases = get_cases(book, index * page->max_words, page->max_words);
 	return (page);
