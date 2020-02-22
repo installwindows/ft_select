@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/22 00:19:47 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/22 02:35:59 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,10 @@ typedef struct		s_case
 typedef struct		s_page
 {
 	t_case			**cases;
+	int				mid_width;
+	int				mid_height;
+	int				word_width;
+	int				word_height;
 	t_case			*current;
 	int				x;
 	int				y;
