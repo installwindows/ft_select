@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:11:08 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/22 00:19:14 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/22 02:02:00 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ void		move_cursor_to(int x, int y)
 void		change_highlighted(t_case *new, t_ft_select *fts)
 {
 	move_cursor_to(fts->reader.box->x, fts->reader.box->y);
-	ft_printf("%s", fts->reader.word->value);
+	ft_printf("%s", fts->reader.box->word->value);
 	move_cursor_to(new->x, new->y);
 	fts->reader.box = new;
 	fts->reader.word = new->word;
 	tputs(tgetstr("so", NULL), 0, ft_putcap);
-	ft_printf("%s", fts->reader.word->value);
+	ft_printf("%s", fts->reader.box->word->value);
 	tputs(tgetstr("se", NULL), 0, ft_putcap);
 }
 
