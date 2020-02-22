@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:11:08 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/22 02:02:00 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/22 02:13:23 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	try_move(int x, int y, t_page *page, t_ft_select *fts)
 	// ...
 	fts->reader.bxi = x;
 	fts->reader.byi = y;
-	change_highlighted(&page->cases[x][y], fts);
+	change_highlighted(&page->cases[y][x], fts);
 }
 
 void	control(int key_code, t_page *page, t_ft_select *fts)
