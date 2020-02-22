@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:11:08 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/22 02:13:23 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 00:38:25 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,47 @@ void		change_highlighted(t_case *new, t_ft_select *fts)
 	tputs(tgetstr("se", NULL), 0, ft_putcap);
 }
 
+static void	move_x(int x, t_page *page, t_ft_select *fts)
+{
+	int		y;
+
+	y = fts->reader.byi;
+	x += fts->reader.bxi;
+	if (x > page->word_width)
+		x = 0;
+	if (x > page->mid_width && y > page->mid_height)
+		x = 0;
+	if (x < 0 && y <= page->mid_height)
+		x = page->word_width;
+	else if (x < 0 && y > page->mid_height)
+		x = page->mid_width;
+	fts->reader.bxi = x;
+}
+
+static void	move_y(int y, t_page *page, t_ft_select *fts)
+{
+	int		x;
+
+	x = fts->reader.bxi;
+	y += fts->reader.byi;
+	if (y > page->word_height)
+		y = 0;
+	if (y > page->mid_height && x > page->mid_width)
+		y = 0;
+	if (y < 0 && x <= page->mid_width)
+		y = page->word_height;
+	else if (y < 0 && x > page->mid_width)
+		y = page->mid_height;
+	fts->reader.byi = y;
+}
+
 static void	try_move(int x, int y, t_page *page, t_ft_select *fts)
 {
-	x += fts->reader.bxi;
-	y += fts->reader.byi;
-	// absolute checks
-	if (x > fts->book.xw)
-		x = 0;
-	else if (x < 0)
-		x = fts->book.xw;
-	if (y > fts->book.yw)
-		y = 0;
-	else if (y < 0)
-		y = fts->book.yw;
-	// cases checks
-	// ...
-	fts->reader.bxi = x;
-	fts->reader.byi = y;
-	change_highlighted(&page->cases[y][x], fts);
+	if (x)
+		move_x(x, page, fts);
+	if (y)
+		move_y(y, page, fts);
+	change_highlighted(&page->cases[fts->reader.byi][fts->reader.bxi], fts);
 }
 
 void	control(int key_code, t_page *page, t_ft_select *fts)

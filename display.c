@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 21:23:13 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/22 02:00:51 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 00:33:39 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void		set_case(t_case *box, t_word *word, int x, int y, t_book *book)
 }
 
 // return a 2d array of t_case
-static t_case	**get_cases(t_book *book, int min, int max)
+static t_case	**get_cases(t_book *book, t_page *page, int min, int max)
 {
 	t_case	**cases;
 	t_word	*words;
@@ -41,7 +41,13 @@ static t_case	**get_cases(t_book *book, int min, int max)
 		while (y < book->yw)
 		{
 			if (min++ >= max || !words)
+			{
+				page->mid_height = y - 1;
+				page->mid_width = x - 1;
+				page->word_width = x;
+				page->word_height = x > 1 ? book->yw - 1 : y;
 				return (cases);
+			}
 			set_case(&cases[y][x], words, x, y, book);
 			words = words->next;
 			y++;
@@ -58,7 +64,7 @@ static t_page	*add_page(t_book *book, int index)
 	page = (t_page*)ft_memalloc(sizeof(t_page));
 	page->max_words = book->xw * book->yw;
 	page->page_no = index;
-	page->cases = get_cases(book, index * page->max_words, page->max_words);
+	page->cases = get_cases(book, page, index * page->max_words, page->max_words);
 	return (page);
 }
 
@@ -140,5 +146,6 @@ void	display_page(t_page *page, t_ft_select *fts)
 void	test_display(t_ft_select *fts)
 {
 	init_display(fts);
+	display_debug_info(fts);
 	display_page(fts->book.pages, fts);
 }
