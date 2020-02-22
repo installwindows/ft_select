@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/18 01:21:11 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/22 00:19:47 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ typedef struct		s_word
 
 typedef struct		s_cur
 {
-	int				r;
-	int				c;
+	int				x;
+	int				y;
 }					t_cur;
 
 typedef struct		s_term
@@ -80,6 +80,7 @@ typedef struct		s_case
 typedef struct		s_page
 {
 	t_case			**cases;
+	t_case			*current;
 	int				x;
 	int				y;
 	int				lgw;
@@ -107,6 +108,15 @@ typedef struct		s_book
 	t_page			*pages;
 }					t_book;
 
+typedef struct		s_reader
+{
+	t_page			*page;
+	t_word			*word;
+	t_case			*box;
+	int				bxi;
+	int				byi;
+}					t_reader;
+
 typedef struct		s_ft_select
 {
 	t_term			term;
@@ -118,6 +128,7 @@ typedef struct		s_ft_select
 	t_book			book;
 	int				nbw;
 	int				lgw;
+	t_reader		reader;
 }					t_ft_select; 
 
 // list.c
@@ -151,5 +162,7 @@ void	basic_move(int, t_ft_select *);
 void	clean_exit(t_ft_select *);
 // display.c
 void	test_display(t_ft_select *);
+// control.c
+void	control(int, t_page *, t_ft_select *);
 
 #endif

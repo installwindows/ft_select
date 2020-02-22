@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/16 02:10:54 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/22 00:23:17 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	ft_select(t_ft_select *fts)
 {
 	char	key[4];
 
+	test_display(fts);
 	ft_memset(&key, 0, 4);
 	while (key[0] != 'q')
 	{
@@ -57,17 +58,14 @@ void	ft_select(t_ft_select *fts)
 		if (key[0] == '\e')
 		{
 			// TODO: check movement
-			// c * nwr + r
 			if (is(key, KEY_UP))
-				basic_move(KEY_UP, fts);
+				control(KEY_UP, fts->reader.page, fts);
 			else if (is(key, KEY_DOWN))
-				basic_move(KEY_DOWN, fts);
+				control(KEY_DOWN, fts->reader.page, fts);
 			else if (is(key, KEY_LEFT))
-				basic_move(KEY_LEFT, fts);
+				control(KEY_LEFT, fts->reader.page, fts);
 			else if (is(key, KEY_RIGHT))
-				basic_move(KEY_RIGHT, fts);
-			update_display(fts);
-			/* ft_printf("%x%x%x", key[0],key[1],key[2]); */
+				control(KEY_RIGHT, fts->reader.page, fts);
 			ft_memset(&key, 0, 4);
 		}
 		check_signals(fts);

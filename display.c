@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 21:23:13 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/20 00:38:05 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/22 00:22:59 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ static t_case	**get_cases(t_book *book, int min, int max)
 	y = 0;
 	while (y < book->yw)
 		cases[y++] = (t_case*)ft_memalloc(sizeof(t_case) * book->xw);
-	// TODO: free cases
 	x = 0;
-	// fill the cases from top to bottom, left to right
 	while (x < book->xw)
 	{
 		y = 0;
@@ -104,6 +102,10 @@ static void	init_book(t_book *book, t_ft_select *fts)
 	book->word_list = fts->words_list;
 	book->word_list_size = get_word_list_size(fts->words_list);
 	init_book_pages(book);
+	fts->reader.page = book->pages;
+	fts->reader.box = &book->pages->cases[0][0];
+	fts->reader.bxi = 0;
+	fts->reader.byi = 0;
 }
 
 void	init_display(t_ft_select *fts)
@@ -126,7 +128,7 @@ void	display_page(t_page *page, t_ft_select *fts)
 			box = &page->cases[i][j];
 			if (box->active)
 			{
-				/* tputs(tgoto(tgetstr("cm", NULL), box->x, box->y), 0, ft_putcap); */
+				tputs(tgoto(tgetstr("cm", NULL), box->x, box->y), 0, ft_putcap);
 				ft_printf("%s", box->word->value);
 			}
 			j++;

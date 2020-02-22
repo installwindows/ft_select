@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:28:56 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/18 01:26:53 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/22 00:21:15 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void	clean_exit(t_ft_select *fts)
 {
+	// TODO: free more stuff
 	free_words(fts->words_list);
 	reset_terminal(fts);
 	exit(0);
@@ -32,11 +33,11 @@ int		main(int argc, char **argv)
 		init_termcap(&fts);
 		initialize_terminal(&fts);
 		/* dummy_print_words_list(fts.words_list); */
-		test_display(&fts);
-		while (argc != 'q')
-			read(1, &argc, 1);
-		/* ft_select(&fts); */
-		/* clean_exit(&fts); */
+		/* test_display(&fts); */
+		/* while (argc != 'q') */
+		/* 	read(1, &argc, 1); */
+		ft_select(&fts);
+		clean_exit(&fts);
 	}
 	return (0);
 }
