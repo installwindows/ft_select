@@ -6,32 +6,11 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/22 00:23:17 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 00:49:05 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
-
-int		update_display(t_ft_select *fts)
-{
-	int		nbwc;
-	int		nbwr;
-	int		nbp;
-	// check terminal size
-	// if ok, display words
-	// if not, return
-	if (fts->term.width < (fts->lgw + FTS_MARGIN) || fts->term.height < 2)
-		return (-1);
-	nbwc = fts->term.width / (fts->lgw + FTS_MARGIN);
-	nbwr = fts->term.height / 2 - 1;
-	nbp = fts->nbw / (nbwc + nbwr);
-	fts->display.wc = nbwc;
-	fts->display.wr = nbwr;
-	tputs(tgoto(tgetstr("cm", NULL), 0, 0), 0, ft_putcap);
-	/* ft_printf("nbwc: %d x nbwr %d x nbp %d", nbwc, nbwr, nbp); */
-	basic_printer(fts, nbwc, nbwr, nbp);
-	return (0);
-}
 
 int		is(const char *input, int key_code)
 {

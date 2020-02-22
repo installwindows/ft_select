@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/22 23:49:51 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 00:48:25 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,6 @@ typedef struct		s_word
 	struct s_word	*next;
 }					t_word;
 
-typedef struct		s_cur
-{
-	int				x;
-	int				y;
-}					t_cur;
-
 typedef struct		s_term
 {
 	int				width;
@@ -57,17 +51,6 @@ typedef struct		s_term
 	struct termios	newtio;
 	char			*mw[16];
 }					t_term;
-
-typedef struct		s_display
-{
-	int				wc_max;
-	int				wr_max;
-	int				wc;
-	int				wr;
-	int				nbp;
-	int				p;
-	t_cur			cur;
-}					t_display;
 
 typedef struct		s_case
 {
@@ -84,15 +67,8 @@ typedef struct		s_page
 	int				mid_height;
 	int				word_width;
 	int				word_height;
-	t_case			*current;
-	int				x;
-	int				y;
-	int				lgw;
 	int				page_no;
-	int				rows;
-	int				cols;
 	int				max_words;
-	int				start;
 	struct s_page	*next;
 }					t_page;
 
@@ -105,10 +81,7 @@ typedef struct		s_book
 	int				yw_max;
 	int				xw;
 	int				yw;
-	int				rows;
-	int				cols;
 	int				nb_page;
-	int				current_page;
 	t_page			*pages;
 }					t_book;
 
@@ -124,14 +97,8 @@ typedef struct		s_reader
 typedef struct		s_ft_select
 {
 	t_term			term;
-	t_word			**words;
-	t_word			*words_list;
-	t_cur			cur;
-	t_display		display;
-	t_word			*current_word;
+	t_word			*word_list;
 	t_book			book;
-	int				nbw;
-	int				lgw;
 	t_reader		reader;
 }					t_ft_select; 
 
@@ -157,9 +124,6 @@ void	ft_select(t_ft_select *);
 int		update_display(t_ft_select *);
 // printer.c
 void	dummy_print_words_list(t_word *words);
-void	dummy_print_words(t_word **);
-void	print_words(t_ft_select *);
-void	basic_printer(t_ft_select *, int, int, int);
 // move.c
 void	basic_move(int, t_ft_select *);
 // main.c

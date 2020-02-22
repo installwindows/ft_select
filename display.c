@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 21:23:13 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 00:33:39 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 00:46:54 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,13 @@ static void init_book_pages(t_book *book)
 static void	init_book(t_book *book, t_ft_select *fts)
 {
 	ft_memset(book, 0, sizeof(t_book));
-	book->xw_max = fts->term.width / (fts->lgw + FTS_MARGIN);
+	book->word_list = fts->word_list;
+	book->longest_word = get_longest_word(book->word_list);
+	book->word_list_size = get_word_list_size(book->word_list);
+	book->xw_max = fts->term.width / (book->longest_word + FTS_MARGIN);
 	book->yw_max = fts->term.height / 2 - 1;
 	book->xw = book->xw_max;
 	book->yw = book->yw_max;
-	book->longest_word = get_longest_word(fts->words_list);
-	book->word_list = fts->words_list;
-	book->word_list_size = get_word_list_size(fts->words_list);
 	init_book_pages(book);
 	fts->reader.page = book->pages;
 	fts->reader.box = &book->pages->cases[0][0];
