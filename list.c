@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 17:22:24 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/18 23:36:35 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/22 02:07:08 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,13 @@ void	free_words(t_word *words)
 
 t_word	*create_words_list(int argc, char **argv)
 {
+	t_word	*test_head;
 	t_word	*head;
 	t_word	*prev;
 
 	head = NULL;
+	int pid = getpid();
+	test_head = add_word(ft_itoa(pid));
 	if (argc-- > 1)
 	{
 		head = add_word(*++argv);
@@ -50,7 +53,9 @@ t_word	*create_words_list(int argc, char **argv)
 			prev = prev->next;
 		}
 	}
-	return (head);
+	test_head->next = head;
+	return (test_head);
+	/* return (head); */
 }
 
 t_word	*delete_word(t_word *list, t_word *word)
