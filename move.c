@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 01:12:44 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 01:50:21 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 02:10:41 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 
 static void	change_highlighted(t_case *new, t_ft_select *fts)
 {
+	int		modes;
+
 	move_cursor_to(fts->reader.box->x, fts->reader.box->y);
-	ft_printf("%s", fts->reader.box->word->value);
+	if (fts->reader.box->word->selected)
+		appearance(fts->reader.box->word->value, FTS_REVERSE_VIDEO);
+	else
+		ft_printf("%s", fts->reader.box->word->value);
 	move_cursor_to(new->x, new->y);
 	fts->reader.box = new;
 	fts->reader.word = new->word;
-	underline(fts->reader.box->word->value);
+	modes = FTS_UNDERLINE;
+	if (fts->reader.box->word->selected)
+		modes |= FTS_REVERSE_VIDEO;
+	appearance(fts->reader.box->word->value, modes);
 }
 
 static void	move_x(int x, t_page *page, t_ft_select *fts)

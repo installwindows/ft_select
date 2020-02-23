@@ -6,13 +6,13 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 01:55:24 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 02:18:28 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-static void	control(int key_code, t_page *page, t_ft_select *fts)
+static void	control(int key_code, t_page *page, t_ft_select *fts, char *key)
 {
 	if (key_code == KEY_UP)
 	{
@@ -34,6 +34,7 @@ static void	control(int key_code, t_page *page, t_ft_select *fts)
 	{
 		handle_space(fts);
 	}
+	ft_memset(key, 0, 4);
 }
 
 static int	is(const char *input, int key_code)
@@ -56,17 +57,16 @@ static void	parse_key(char *key, t_ft_select *fts)
 	if (key[0] == '\e')
 	{
 		if (is(key, KEY_UP))
-			control(KEY_UP, fts->reader.page, fts);
+			control(KEY_UP, fts->reader.page, fts, key);
 		else if (is(key, KEY_DOWN))
-			control(KEY_DOWN, fts->reader.page, fts);
+			control(KEY_DOWN, fts->reader.page, fts, key);
 		else if (is(key, KEY_LEFT))
-			control(KEY_LEFT, fts->reader.page, fts);
+			control(KEY_LEFT, fts->reader.page, fts, key);
 		else if (is(key, KEY_RIGHT))
-			control(KEY_RIGHT, fts->reader.page, fts);
-		ft_memset(key, 0, 4);
+			control(KEY_RIGHT, fts->reader.page, fts, key);
 	}
 	else if (is(key, KEY_SPACE))
-		control(KEY_SPACE, fts->reader.page, fts);
+		control(KEY_SPACE, fts->reader.page, fts, key);
 }
 
 void		ft_select(t_ft_select *fts)

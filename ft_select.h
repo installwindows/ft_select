@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 01:53:16 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 02:03:44 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define KEY_DELETE (1 << 7)
 # define KEY_RETURN (1 << 8)
 # define FTS_MARGIN 2
+# define FTS_UNDERLINE (1 << 0)
+# define FTS_REVERSE_VIDEO (2 << 0)
 
 int					g_signals[32];
 
@@ -139,9 +141,10 @@ void	test_display(t_ft_select *);
 void	display_debug_info(t_ft_select *);
 // cap.c
 void	underline(char *);
+void	reverse_video(char *);
+void	appearance(char *, int);
 // control.c
 void	handle_space(t_ft_select *);
 void	move_cursor_to(int, int);
-void	reverse_video(char *);
 
 #endif
