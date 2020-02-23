@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 21:23:13 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 18:05:26 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 18:16:03 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,8 +150,15 @@ void	display_page(t_page *page, t_ft_select *fts)
 			box = &page->cases[i][j];
 			if (box->active)
 			{
-				tputs(tgoto(tgetstr("cm", NULL), box->x, box->y), 0, ft_putcap);
-				ft_printf("%s", box->word->value);
+				move_cursor_to(box->x, box->y);
+				if (box->word->selected && fts->reader.box == box)
+					appearance(box->word->value, FTS_REVERSE_VIDEO | FTS_UNDERLINE);
+				else if (box->word->selected)
+					reverse_video(box->word->value);
+				else if (fts->reader.box == box)
+					underline(box->word->value);
+				else
+					ft_printf("%s", box->word->value);
 			}
 			j++;
 		}
