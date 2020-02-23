@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 00:48:25 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 01:06:19 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@
 # define KEY_DOWN (1 << 1)
 # define KEY_LEFT (1 << 2)
 # define KEY_RIGHT (1 << 3)
+# define KEY_SPACE (1 << 4)
+# define KEY_BACKSPACE (1 << 5)
+# define KEY_ESCAPE (1 << 6)
+# define KEY_DELETE (1 << 7)
+# define KEY_RETURN (1 << 8)
 # define FTS_MARGIN 2
 
 int					g_signals[32];
