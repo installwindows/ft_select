@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 20:50:09 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 22:00:45 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@
 # define KEY_ESCAPE (1 << 6)
 # define KEY_DELETE (1 << 7)
 # define KEY_RETURN (1 << 8)
+# define KEY_PAGE_UP (1 << 9)
+# define KEY_PAGE_DOWN (1 << 10)
 # define FTS_MARGIN 2
 # define FTS_UNDERLINE (1 << 0)
 # define FTS_REVERSE_VIDEO (2 << 0)
@@ -80,6 +82,7 @@ typedef struct		s_page
 	int				max_words;
 	int				word_count;
 	struct s_page	*next;
+	struct s_page	*prev;
 }					t_page;
 
 typedef struct		s_book
@@ -149,6 +152,8 @@ void	appearance(char *, int);
 // control.c
 void	handle_space(t_ft_select *);
 void	handle_delete(t_ft_select *);
+void	handle_page_up(t_ft_select *);
+void	handle_page_down(t_ft_select *);
 void	move_cursor_to(int, int);
 // page.c
 void	set_reader_case(t_reader *);

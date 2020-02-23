@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 01:21:43 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 20:49:59 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 21:51:57 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,30 @@ void	handle_delete(t_ft_select *fts)
 	delete_word(&fts->word_list, fts->reader.word);
 	fts->reader.word = new_cur;
 	display(fts);
+}
+
+void	handle_page_up(t_ft_select *fts)
+{
+	if (fts->reader.page->next)
+	{
+		fts->reader.page = fts->reader.page->next;
+		fts->reader.box = &fts->reader.page->cases[0][0];
+		fts->reader.bxi = 0;
+		fts->reader.byi = 0;
+		fts->reader.word = fts->reader.box->word;
+		display(fts);
+	}
+}
+
+void	handle_page_down(t_ft_select *fts)
+{
+	if (fts->reader.page->prev)
+	{
+		fts->reader.page = fts->reader.page->prev;
+		fts->reader.box = &fts->reader.page->cases[0][0];
+		fts->reader.bxi = 0;
+		fts->reader.byi = 0;
+		fts->reader.word = fts->reader.box->word;
+		display(fts);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 21:23:13 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 20:30:27 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 22:00:05 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static t_page	*add_page(t_book *book, int index)
 
 static void init_book_pages(t_book *book)
 {
-	t_page	*page;
+	t_page	*cur;
 	t_page	*head;
 	t_page	*prev;
 	int		wc;
@@ -86,20 +86,22 @@ static void init_book_pages(t_book *book)
 	wc = 0;
 	i = 0;
 	head = NULL;
+	prev = NULL;
 	while (wc < book->word_list_size)
 	{
-		page = add_page(book, i++);
 		if (head == NULL)
 		{
-			head = page;
-			prev = head;
+			head = add_page(book, i++);
+			cur = head;
 		}
 		else
 		{
-			prev->next = page;
-			prev = page;
+			cur->next = add_page(book, i++);
+			cur->prev = prev;
+			prev = cur;
+			cur = cur->next;
 		}
-		wc += page->word_count;
+		wc += cur->word_count;
 	}
 	book->nb_page = i;
 	book->pages = head;
@@ -170,6 +172,9 @@ void	display_page(t_page *page, t_ft_select *fts)
 		}
 		i++;
 	}
+	// display page info
+	move_cursor_to(0, fts->term.height - 1);
+	ft_printf("%d / %d", page->page_no, fts->book.nb_page);
 }
 
 void	display(t_ft_select *fts)

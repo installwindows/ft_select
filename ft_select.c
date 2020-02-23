@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 20:31:04 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 21:47:01 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,14 @@ static void	control(int key_code, t_page *page, t_ft_select *fts, char *key)
 	{
 		handle_delete(fts);
 	}
+	else if (key_code == KEY_PAGE_UP)
+	{
+		handle_page_up(fts);
+	}
+	else if (key_code == KEY_PAGE_DOWN)
+	{
+		handle_page_down(fts);
+	}
 	ft_memset(key, 0, 4);
 }
 
@@ -55,6 +63,10 @@ static int	is(const char *input, int key_code)
 		return !strcmp(input, " ");
 	else if (key_code == KEY_DELETE)
 		return !strcmp(input, "\x7F");
+	else if (key_code == KEY_PAGE_UP)
+		return !strcmp(input, "\x1b\x5b\x35");
+	else if (key_code == KEY_PAGE_DOWN)
+		return !strcmp(input, "\x7e\x5b\x36");
 	return (0);
 }
 
@@ -75,6 +87,10 @@ static void	parse_key(char *key, t_ft_select *fts)
 		control(KEY_SPACE, fts->reader.page, fts, key);
 	else if (is(key, KEY_DELETE))
 		control(KEY_DELETE, fts->reader.page, fts, key);
+	else if (is(key, KEY_PAGE_UP))
+		control(KEY_PAGE_UP, fts->reader.page, fts, key);
+	else if (is(key, KEY_PAGE_DOWN))
+		control(KEY_PAGE_DOWN, fts->reader.page, fts, key);
 }
 
 void		ft_select(t_ft_select *fts)
