@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 18:37:11 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 20:31:04 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	is(const char *input, int key_code)
 	else if (key_code == KEY_SPACE)
 		return !strcmp(input, " ");
 	else if (key_code == KEY_DELETE)
-		return !strcmp(input, "\e");
+		return !strcmp(input, "\x7F");
 	return (0);
 }
 

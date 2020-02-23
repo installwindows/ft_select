@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 01:21:43 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 18:36:20 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 20:49:59 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	handle_delete(t_ft_select *fts)
 		new_cur = fts->reader.word->prev;
 	else
 		clean_exit(fts);
-	fts->book.word_list = delete_word(fts->book.word_list, fts->reader.box->word);
+	delete_word(&fts->word_list, fts->reader.word);
 	fts->reader.word = new_cur;
 	display(fts);
 }

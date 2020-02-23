@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 17:22:24 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 18:26:52 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 21:05:06 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,28 +57,23 @@ t_word	*create_words_list(int argc, char **argv)
 	return (head);
 }
 
-t_word	*delete_word(t_word *list, t_word *word)
+void	delete_word(t_word **list, t_word *word)
 {
-	t_word	*head;
-
-	head = list;
-	if (head == word)
+	if (*list == word)
 	{
-		head = list->next;
-		free(word);
-		return (head);
+		*list = word->next;
+		word->next->prev = NULL;
 	}
-	while (list->next)
+	else if (word->next == NULL)
 	{
-		if (list->next == word)
-		{
-			list->next = word->next;
-			free(word);
-			break ;
-		}
-		list = list->next;
+		word->prev->next = NULL;
 	}
-	return (head);
+	else
+	{
+		word->prev->next = word->next;
+		word->next->prev = word->prev;
+	}
+	free(word);
 }
 
 t_word	*get_word_no(t_word *list, int no)
