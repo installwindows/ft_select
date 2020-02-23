@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 02:03:44 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 18:06:39 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,14 @@ typedef struct		s_case
 typedef struct		s_page
 {
 	t_case			**cases;
+	t_word			*word_list;
 	int				mid_width;
 	int				mid_height;
 	int				word_width;
 	int				word_height;
 	int				page_no;
 	int				max_words;
+	int				word_count;
 	struct s_page	*next;
 }					t_page;
 
@@ -145,6 +147,10 @@ void	reverse_video(char *);
 void	appearance(char *, int);
 // control.c
 void	handle_space(t_ft_select *);
+void	handle_delete(t_ft_select *);
 void	move_cursor_to(int, int);
+// page.c
+void	set_reader_case(t_reader *);
+t_page	*find_word_page(t_page *, t_word *);
 
 #endif

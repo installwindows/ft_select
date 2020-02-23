@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 02:18:28 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 16:25:09 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ static void	control(int key_code, t_page *page, t_ft_select *fts, char *key)
 	{
 		handle_space(fts);
 	}
+	else if (key_code == KEY_DELETE)
+	{
+		handle_delete(fts);
+	}
 	ft_memset(key, 0, 4);
 }
 
@@ -49,6 +53,8 @@ static int	is(const char *input, int key_code)
 		return !strcmp(input, T_KEY_RIGHT) || !strcmp(input, T_T_KEY_RIGHT);
 	else if (key_code == KEY_SPACE)
 		return !strcmp(input, " ");
+	else if (key_code == KEY_DELETE)
+		return !strcmp(input, "\e");
 	return (0);
 }
 
@@ -67,6 +73,8 @@ static void	parse_key(char *key, t_ft_select *fts)
 	}
 	else if (is(key, KEY_SPACE))
 		control(KEY_SPACE, fts->reader.page, fts, key);
+	else if (is(key, KEY_DELETE))
+		control(KEY_DELETE, fts->reader.page, fts, key);
 }
 
 void		ft_select(t_ft_select *fts)

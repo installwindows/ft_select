@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 21:23:13 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 00:46:54 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 18:05:26 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static t_case	**get_cases(t_book *book, t_page *page, int min, int max)
 	int		y;
 
 	words = get_word_no(book->word_list, min);
+	page->word_list = words;
 	cases = (t_case**)ft_memalloc(sizeof(t_case*) * book->yw);
 	y = 0;
 	while (y < book->yw)
@@ -46,6 +47,7 @@ static t_case	**get_cases(t_book *book, t_page *page, int min, int max)
 				page->mid_width = x - 1;
 				page->word_width = x;
 				page->word_height = x > 1 ? book->yw - 1 : y;
+				page->word_count = min;
 				return (cases);
 			}
 			set_case(&cases[y][x], words, x, y, book);
@@ -97,6 +99,23 @@ static void init_book_pages(t_book *book)
 	book->pages = head;
 }
 
+static void	init_reader(t_ft_select *fts)
+{
+	if (fts->reader.page == NULL)
+	{
+		fts->reader.page = fts->book.pages;
+		fts->reader.box = &fts->book.pages->cases[0][0];
+		fts->reader.word = fts->book.pages->cases[0][0].word;
+		fts->reader.bxi = 0;
+		fts->reader.byi = 0;
+	}
+	else
+	{
+		fts->reader.page = find_word_page(fts->reader.page, fts->reader.word);
+		set_reader_case(&fts->reader);
+	}
+}
+
 static void	init_book(t_book *book, t_ft_select *fts)
 {
 	ft_memset(book, 0, sizeof(t_book));
@@ -108,15 +127,12 @@ static void	init_book(t_book *book, t_ft_select *fts)
 	book->xw = book->xw_max;
 	book->yw = book->yw_max;
 	init_book_pages(book);
-	fts->reader.page = book->pages;
-	fts->reader.box = &book->pages->cases[0][0];
-	fts->reader.bxi = 0;
-	fts->reader.byi = 0;
 }
 
 void	init_display(t_ft_select *fts)
 {
 	init_book(&fts->book, fts);
+	init_reader(fts);
 }
 
 void	display_page(t_page *page, t_ft_select *fts)
@@ -147,5 +163,5 @@ void	test_display(t_ft_select *fts)
 {
 	init_display(fts);
 	display_debug_info(fts);
-	display_page(fts->book.pages, fts);
+	display_page(fts->reader.page, fts);
 }
