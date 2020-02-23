@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 21:23:13 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 18:36:04 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 20:17:07 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ static t_page	*add_page(t_book *book, int index)
 	page = (t_page*)ft_memalloc(sizeof(t_page));
 	page->max_words = book->xw * book->yw;
 	page->page_no = index;
+	page->word_width = book->xw - 1;
+	page->word_height = book->yw - 1;
+	page->mid_width = book->xw - 1;
+	page->mid_height = book->yw - 1;
+	page->word_count = page->max_words;
 	page->cases = get_cases(book, page, index * page->max_words, page->max_words);
 	return (page);
 }
@@ -92,10 +97,11 @@ static void init_book_pages(t_book *book)
 		else
 		{
 			prev->next = page;
-			prev = page->next;
+			prev = page;
 		}
-		wc += book->word_list_size;
+		wc += page->word_count;
 	}
+	book->nb_page = i;
 	book->pages = head;
 }
 
