@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 01:43:12 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 01:53:16 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,8 @@ void	display_debug_info(t_ft_select *);
 // cap.c
 void	underline(char *);
 // control.c
-void	handle_space(t_page *, t_ft_select *);
+void	handle_space(t_ft_select *);
+void	move_cursor_to(int, int);
+void	reverse_video(char *);
 
 #endif

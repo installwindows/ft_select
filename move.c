@@ -6,16 +6,11 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 01:12:44 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 01:41:18 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 01:50:21 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
-
-static void	move_cursor_to(int x, int y)
-{
-	tputs(tgoto(tgetstr("cm", NULL), x, y), 0, ft_putcap);
-}
 
 static void	change_highlighted(t_case *new, t_ft_select *fts)
 {

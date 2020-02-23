@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 01:21:36 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 01:55:24 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	control(int key_code, t_page *page, t_ft_select *fts)
 	}
 	else if (key_code == KEY_SPACE)
 	{
-		handle_space(page, fts);
+		handle_space(fts);
 	}
 }
 
@@ -63,10 +63,10 @@ static void	parse_key(char *key, t_ft_select *fts)
 			control(KEY_LEFT, fts->reader.page, fts);
 		else if (is(key, KEY_RIGHT))
 			control(KEY_RIGHT, fts->reader.page, fts);
-		else if (is(key, KEY_SPACE))
-			control(KEY_SPACE, fts->reader.page, fts);
 		ft_memset(key, 0, 4);
 	}
+	else if (is(key, KEY_SPACE))
+		control(KEY_SPACE, fts->reader.page, fts);
 }
 
 void		ft_select(t_ft_select *fts)
