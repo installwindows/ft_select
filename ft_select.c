@@ -6,13 +6,38 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 01:09:44 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 01:16:46 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-int		is(const char *input, int key_code)
+static void	control(int key_code, t_page *page, t_ft_select *fts)
+{
+	if (key_code == KEY_UP)
+	{
+		move(0, -1, page, fts);
+	}
+	else if (key_code == KEY_DOWN)
+	{
+		move(0, 1, page, fts);
+	}
+	else if (key_code == KEY_LEFT)
+	{
+		move(-1, 0, page, fts);
+	}
+	else if (key_code == KEY_RIGHT)
+	{
+		move(1, 0, page, fts);
+	}
+	else if (key_code == KEY_SPACE)
+	{
+	}
+}
+
+
+
+static int	is(const char *input, int key_code)
 {
 	if (key_code == KEY_UP)
 		return !strcmp(input, T_KEY_UP) || !strcmp(input, T_T_KEY_UP);
@@ -41,16 +66,16 @@ static void	parse_key(char *key, t_ft_select *fts)
 			control(KEY_RIGHT, fts->reader.page, fts);
 		else if (is(key, KEY_SPACE))
 			control(KEY_SPACE, fts->reader.page, fts);
-		ft_memset(&key, 0, 4);
+		ft_memset(key, 0, 4);
 	}
 }
 
-void	ft_select(t_ft_select *fts)
+void		ft_select(t_ft_select *fts)
 {
 	char	key[4];
 
 	test_display(fts);
-	ft_memset(&key, 0, 4);
+	ft_memset(key, 0, 4);
 	while (key[0] != 'q')
 	{
 		read(1, key, 3);

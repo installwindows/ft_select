@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   control.c                                          :+:      :+:    :+:   */
+/*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/10 21:11:08 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 00:38:25 by varnaud          ###   ########.fr       */
+/*   Created: 2020/02/23 01:12:44 by varnaud           #+#    #+#             */
+/*   Updated: 2020/02/23 01:15:08 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void		move_cursor_to(int x, int y)
+static void	move_cursor_to(int x, int y)
 {
 	tputs(tgoto(tgetstr("cm", NULL), x, y), 0, ft_putcap);
 }
 
-void		change_highlighted(t_case *new, t_ft_select *fts)
+static void	change_highlighted(t_case *new, t_ft_select *fts)
 {
 	move_cursor_to(fts->reader.box->x, fts->reader.box->y);
 	ft_printf("%s", fts->reader.box->word->value);
@@ -63,7 +63,7 @@ static void	move_y(int y, t_page *page, t_ft_select *fts)
 	fts->reader.byi = y;
 }
 
-static void	try_move(int x, int y, t_page *page, t_ft_select *fts)
+void		move(int x, int y, t_page *page, t_ft_select *fts)
 {
 	if (x)
 		move_x(x, page, fts);
@@ -71,24 +71,3 @@ static void	try_move(int x, int y, t_page *page, t_ft_select *fts)
 		move_y(y, page, fts);
 	change_highlighted(&page->cases[fts->reader.byi][fts->reader.bxi], fts);
 }
-
-void	control(int key_code, t_page *page, t_ft_select *fts)
-{
-	if (key_code == KEY_UP)
-	{
-		try_move(0, -1, page, fts);
-	}
-	else if (key_code == KEY_DOWN)
-	{
-		try_move(0, 1, page, fts);
-	}
-	else if (key_code == KEY_LEFT)
-	{
-		try_move(-1, 0, page, fts);
-	}
-	else if (key_code == KEY_RIGHT)
-	{
-		try_move(1, 0, page, fts);
-	}
-}
-
