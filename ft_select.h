@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 18:06:39 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 18:36:44 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct		s_word
 	int				len;
 	char			*value;
 	struct s_word	*next;
+	struct s_word	*prev;
 }					t_word;
 
 typedef struct		s_term
@@ -138,7 +139,7 @@ void	move(int, int, t_page *, t_ft_select *);
 // main.c
 void	clean_exit(t_ft_select *);
 // display.c
-void	test_display(t_ft_select *);
+void	display(t_ft_select *);
 // debug.c
 void	display_debug_info(t_ft_select *);
 // cap.c

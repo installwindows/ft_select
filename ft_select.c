@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 16:25:09 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 18:37:11 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void		ft_select(t_ft_select *fts)
 {
 	char	key[4];
 
-	test_display(fts);
+	display(fts);
 	ft_memset(key, 0, 4);
 	while (key[0] != 'q')
 	{

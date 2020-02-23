@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 01:21:43 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 18:07:52 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 18:36:20 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,16 @@ void	handle_space(t_ft_select *fts)
 
 void	handle_delete(t_ft_select *fts)
 {
+	t_word	*new_cur;
+
+	new_cur = NULL;
+	if (fts->reader.word->next)
+		new_cur = fts->reader.word->next;
+	else if (fts->reader.word->prev)
+		new_cur = fts->reader.word->prev;
+	else
+		clean_exit(fts);
 	fts->book.word_list = delete_word(fts->book.word_list, fts->reader.box->word);
-	fts->book.longest_word = get_longest_word(fts->book.word_list);
-	fts->book.word_list_size = get_word_list_size(fts->book.word_list);
+	fts->reader.word = new_cur;
+	display(fts);
 }
