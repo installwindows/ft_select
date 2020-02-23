@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 01:12:44 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 01:15:08 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 01:41:18 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ static void	change_highlighted(t_case *new, t_ft_select *fts)
 	move_cursor_to(new->x, new->y);
 	fts->reader.box = new;
 	fts->reader.word = new->word;
-	tputs(tgetstr("so", NULL), 0, ft_putcap);
-	ft_printf("%s", fts->reader.box->word->value);
-	tputs(tgetstr("se", NULL), 0, ft_putcap);
+	underline(fts->reader.box->word->value);
 }
 
 static void	move_x(int x, t_page *page, t_ft_select *fts)

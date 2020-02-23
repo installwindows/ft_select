@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 01:16:46 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 01:21:36 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ static void	control(int key_code, t_page *page, t_ft_select *fts)
 	}
 	else if (key_code == KEY_SPACE)
 	{
+		handle_space(page, fts);
 	}
 }
-
-
 
 static int	is(const char *input, int key_code)
 {

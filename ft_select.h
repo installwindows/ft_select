@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 01:15:07 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/23 01:43:12 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,5 +137,9 @@ void	clean_exit(t_ft_select *);
 void	test_display(t_ft_select *);
 // debug.c
 void	display_debug_info(t_ft_select *);
+// cap.c
+void	underline(char *);
+// control.c
+void	handle_space(t_page *, t_ft_select *);
 
 #endif
