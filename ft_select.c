@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 21:47:01 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/24 13:33:31 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,11 @@ static int	is(const char *input, int key_code)
 	else if (key_code == KEY_DELETE)
 		return !strcmp(input, "\x7F");
 	else if (key_code == KEY_PAGE_UP)
-		return !strcmp(input, "\x1b\x5b\x35");
+		/* return !strcmp(input, "\x1b\x5b\x35"); */
+		return !strcmp(input, T_KEY_PAGE_UP);
 	else if (key_code == KEY_PAGE_DOWN)
-		return !strcmp(input, "\x7e\x5b\x36");
+		/* return !strcmp(input, "\x7e\x5b\x36"); */
+		return !strcmp(input, T_KEY_PAGE_DOWN);
 	return (0);
 }
 

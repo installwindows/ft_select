@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 22:00:45 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/24 13:31:41 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 # define T_KEY_DOWN tgetstr("kd", NULL)
 # define T_KEY_LEFT tgetstr("kl", NULL)
 # define T_KEY_RIGHT tgetstr("kr", NULL)
+# define T_KEY_BACKSPACE tgetstr("kb", NULL)
+# define T_KEY_DELETE tgetstr("kD", NULL)
+# define T_KEY_PAGE_UP tgetstr("kN", NULL)
+# define T_KEY_PAGE_DOWN tgetstr("kP", NULL)
 # define T_T_KEY_UP "\e[A"
 # define T_T_KEY_DOWN "\e[B"
 # define T_T_KEY_RIGHT "\e[C"
