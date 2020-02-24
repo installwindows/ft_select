@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/24 20:45:14 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/24 22:15:35 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	control(int key_code, t_page *page, t_ft_select *fts, char *key)
 	{
 		handle_space(fts);
 	}
-	else if (key_code == KEY_DELETE)
+	else if (key_code & (KEY_BACKSPACE | KEY_DELETE))
 	{
 		handle_delete(fts);
 	}
@@ -61,16 +61,14 @@ static int	is(const char *input, int key_code)
 		return !strcmp(input, T_KEY_RIGHT) || !strcmp(input, T_T_KEY_RIGHT);
 	else if (key_code == KEY_SPACE)
 		return !strcmp(input, " ");
-	else if (key_code == KEY_DELETE)
+	else if (key_code == KEY_BACKSPACE)
 		return !strcmp(input, "\x7F");
+	else if (key_code == KEY_DELETE)
+		return !strcmp(input, "\x7e\x5b\x33");
 	else if (key_code == KEY_PAGE_UP)
-		/* return !strcmp(input, "\x1b\x5b\x35"); */
 		return !strcmp(input, "\x7e\x5b\x35");
-		/* return !strcmp(input, T_KEY_PAGE_UP); */
 	else if (key_code == KEY_PAGE_DOWN)
 		return !strcmp(input, "\x7e\x5b\x36");
-		/* return !strcmp(input, "\x7e\x5b\x36"); */
-		/* return !strcmp(input, T_KEY_PAGE_DOWN); */
 	return (0);
 }
 
@@ -91,6 +89,8 @@ static void	parse_key(char *key, t_ft_select *fts)
 	}
 	else if (is(key, KEY_SPACE))
 		control(KEY_SPACE, fts->reader.page, fts, key);
+	else if (is(key, KEY_BACKSPACE))
+		control(KEY_DELETE, fts->reader.page, fts, key);
 	else if (is(key, KEY_DELETE))
 		control(KEY_DELETE, fts->reader.page, fts, key);
 	else if (is(key, KEY_PAGE_UP))
