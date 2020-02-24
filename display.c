@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 21:23:13 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/24 21:50:27 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/24 22:12:10 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ void	display_page(t_page *page, t_ft_select *fts)
 	}
 	// display page info
 	move_cursor_to(0, fts->term.height - 1);
-	ft_printf("%d / %d", page->page_no, fts->book.nb_page);
+	ft_printf("%d / %d", page->page_no + 1, fts->book.nb_page);
 }
 
 void	display(t_ft_select *fts)
