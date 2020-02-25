@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 18:39:35 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/22 01:57:31 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/25 00:55:10 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void		check_signals(t_ft_select *fts)
 	if (g_signals[SIGWINCH])
 	{
 		g_signals[SIGWINCH] = 0;
+		handle_resize(fts);
 	}
 }
 

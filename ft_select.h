@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/24 13:31:41 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/25 01:39:45 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ typedef struct		s_ft_select
 	t_word			*word_list;
 	t_book			book;
 	t_reader		reader;
+	int				displayed;
 }					t_ft_select; 
 
 // list.c
@@ -162,5 +163,7 @@ void	move_cursor_to(int, int);
 // page.c
 void	set_reader_case(t_reader *);
 t_page	*find_word_page(t_page *, t_word *);
+// resize.c
+void	handle_resize(t_ft_select *);
 
 #endif
