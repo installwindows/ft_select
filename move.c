@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 01:12:44 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 02:10:41 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/26 18:05:29 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	move_x(int x, t_page *page, t_ft_select *fts)
 	x += fts->reader.bxi;
 	if (x > page->word_width)
 		x = 0;
-	if (x > page->mid_width && y > page->mid_height)
+	else if (x > page->mid_width && y > page->mid_height)
 		x = 0;
 	if (x < 0 && y <= page->mid_height)
 		x = page->word_width;
@@ -55,7 +55,7 @@ static void	move_y(int y, t_page *page, t_ft_select *fts)
 	y += fts->reader.byi;
 	if (y > page->word_height)
 		y = 0;
-	if (y > page->mid_height && x > page->mid_width)
+	else if (y > page->mid_height && x > page->mid_width)
 		y = 0;
 	if (y < 0 && x <= page->mid_width)
 		y = page->word_height;

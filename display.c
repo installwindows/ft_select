@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 21:23:13 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/24 22:12:10 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/26 18:13:10 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static t_case	**get_cases(t_book *book, t_page *page, int word_index)
 				page->mid_height = y - 1;
 				page->mid_width = x - 1;
 				page->word_width = x;
-				page->word_height = x > 1 ? book->yw - 1 : y;
+				page->word_height = x > 0 ? book->yw - 1 : y;
 				page->word_count = i;
 				return (cases);
 			}
@@ -183,7 +183,7 @@ void	display_page(t_page *page, t_ft_select *fts)
 void	display(t_ft_select *fts)
 {
 	init_display(fts);
-	/* display_debug_info(fts); */
+	display_debug_info(fts);
 	tputs(tgetstr("cl", NULL), 42, ft_putcap);
 	display_page(fts->reader.page, fts);
 }
