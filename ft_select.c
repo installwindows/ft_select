@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/26 20:18:14 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/26 21:49:06 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ static void	parse_key(char *key, t_ft_select *fts)
 			control(KEY_LEFT, fts->reader.page, fts, key);
 		else if (is(key, KEY_RIGHT))
 			control(KEY_RIGHT, fts->reader.page, fts, key);
+		else if (key[1] == '\0')
+			clean_exit(fts);
 	}
 	else if (key[0] == 'j')
 		control(KEY_DOWN, fts->reader.page, fts, key);
