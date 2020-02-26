@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/25 01:45:24 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/26 18:20:53 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,6 @@ void		ft_select(t_ft_select *fts)
 {
 	char	key[4];
 
-	// if the initial window is two small and we want to quit, we have to press
-	// 'q' 2 times...
 	handle_resize(fts);
 	ft_memset(key, 0, 4);
 	while (key[0] != 'q')

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 00:41:47 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/25 01:41:54 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/26 18:19:04 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ static void	wait_resize(t_ft_select *fts)
 	tputs(tgetstr("cl", NULL), 42, ft_putcap);
 	ft_printf("Terminal size too small. Waiting for resize...");
 	c = 0;
-	while (c != 'q' && c != '\e')
+	while (1)
 	{
+		if (c == 'q' || c == '\e')
+			clean_exit(fts);
 		read(1, &c, 1);
 		check_signals(fts);
 		if (fts->term.width > fts->book.longest_word + 2 && fts->term.height > 2)
