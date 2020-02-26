@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:28:56 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/25 01:33:07 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/26 22:15:37 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,24 @@ void	clean_exit(t_ft_select *fts)
 	free_words(fts->word_list);
 	reset_terminal(fts);
 	exit(0);
+}
+
+void	return_exit(t_ft_select *fts)
+{
+	t_word	*word;
+	int		i;
+
+	reset_terminal(fts);
+	word = fts->word_list;
+	i = 0;
+	while (word)
+	{
+		if (word->selected)
+			ft_printf("%s%s", i++ ? " " : "", word->value);
+		word = word->next;
+	}
+	exit(0);
+	/* clean_exit(fts); */
 }
 
 int		main(int argc, char **argv)
@@ -35,7 +53,8 @@ int		main(int argc, char **argv)
 		fts.word_list = create_words_list(argc, argv);
 		fts.book.longest_word = get_longest_word(fts.word_list);
 		init_signals();
-		init_termcap(&fts);
+		if (init_termcap(&fts))
+			clean_exit(&fts);
 		initialize_terminal(&fts);
 		ft_select(&fts);
 		clean_exit(&fts);

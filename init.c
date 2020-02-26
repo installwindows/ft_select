@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 19:38:41 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 20:31:26 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/26 23:32:49 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ int		init_termcap(t_ft_select *fts)
 	err = 0;
 	term_type = getenv("TERM");
 	if (term_type == NULL)
-		err = ft_fprintf(2, "Environment variable TERM not set.\n");
+		err = ft_dprintf(2, "Environment variable TERM not set.\n");
 	r = tgetent(term_buffer, term_type);
 	if (r < 0)
-		err = ft_fprintf(2, "Could not access the termcap database\n");
+		err = ft_dprintf(2, "Could not access the termcap database\n");
 	else if (r == 0)
-		err = ft_fprintf(2, "Terminal type `%s` is not defined.\n", term_type);
+		err = ft_dprintf(2, "Terminal type `%s` is not defined.\n", term_type);
 	check_termcaps(fts);
 	return (err);
 }

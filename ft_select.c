@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/26 21:52:03 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/26 21:55:58 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ static void	parse_key(char *key, t_ft_select *fts)
 		control(KEY_PAGE_UP, fts->reader.page, fts, key);
 	else if (is(key, KEY_PAGE_DOWN))
 		control(KEY_PAGE_DOWN, fts->reader.page, fts, key);
+	else if (key[0] == '\n')
+		return_exit(fts);
 }
 
 void		ft_select(t_ft_select *fts)

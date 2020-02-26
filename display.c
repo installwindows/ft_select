@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 21:23:13 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/26 20:25:42 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/26 23:32:20 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ void	display_page(t_page *page, t_ft_select *fts)
 				else if (fts->reader.box == box)
 					underline(box->word->value);
 				else
-					ft_printf("%s", box->word->value);
+					ft_dprintf(2, "%s", box->word->value);
 			}
 			j++;
 		}
@@ -177,7 +177,7 @@ void	display_page(t_page *page, t_ft_select *fts)
 	}
 	// display page info
 	move_cursor_to(fts->term.width - ft_numlen(fts->book.nb_page) * 2 - 4, fts->term.height - 1);
-	ft_printf("%d / %d", page->page_no + 1, fts->book.nb_page);
+	ft_dprintf(2, "%d / %d", page->page_no + 1, fts->book.nb_page);
 }
 
 void	display(t_ft_select *fts)

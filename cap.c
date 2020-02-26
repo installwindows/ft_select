@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 01:39:08 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 02:01:52 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/26 23:32:28 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 void	underline(char *str)
 {
 	tputs(tgetstr("us", NULL), 0, ft_putcap);
-	ft_printf("%s", str);
+	ft_dprintf(2, "%s", str);
 	tputs(tgetstr("ue", NULL), 0, ft_putcap);
 }
 
 void	reverse_video(char *str)
 {
 	tputs(tgetstr("mr", NULL), 0, ft_putcap);
-	ft_printf("%s", str);
+	ft_dprintf(2, "%s", str);
 	tputs(tgetstr("me", NULL), 0, ft_putcap);
 }
 
@@ -32,7 +32,7 @@ void	appearance(char *str, int modes)
 		tputs(tgetstr("us", NULL), 0, ft_putcap);
 	if (modes & FTS_REVERSE_VIDEO)
 		tputs(tgetstr("mr", NULL), 0, ft_putcap);
-	ft_printf("%s", str);
+	ft_dprintf(2, "%s", str);
 	if (modes & FTS_REVERSE_VIDEO)
 		tputs(tgetstr("me", NULL), 0, ft_putcap);
 	if (modes & FTS_UNDERLINE)

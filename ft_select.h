@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/25 01:39:45 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/26 22:00:41 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ void	dummy_print_words_list(t_word *words);
 void	move(int, int, t_page *, t_ft_select *);
 // main.c
 void	clean_exit(t_ft_select *);
+void	return_exit(t_ft_select *);
 // display.c
 void	display(t_ft_select *);
 // debug.c

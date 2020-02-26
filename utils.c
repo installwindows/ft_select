@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:10:55 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/17 21:16:25 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/26 23:07:24 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_putcap(int c)
 {
-	return ((int)write(1, &c, 1));
+	return ((int)write(2, &c, 1));
 }
 
 int		get_longest_word(t_word *words)
