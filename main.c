@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:28:56 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/26 22:15:37 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/26 23:52:21 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,29 @@ void	return_exit(t_ft_select *fts)
 	/* clean_exit(fts); */
 }
 
+void	test_tty(void)
+{
+	//isatty, ttyname, ttyslot
+	int slot = ttyslot();
+	int i = 0;
+	char c = 0;
+	char *in = ttyname(1);
+	int fd = open(in, O_RDONLY);
+
+	move_cursor_to(0, ++i);
+	ft_dprintf(2, "fd: %d isatty: %d\n", fd, isatty(fd));
+	move_cursor_to(0, ++i);
+	ft_dprintf(2, "ttyslot: %d\n", slot);
+	move_cursor_to(0, ++i);
+	ft_dprintf(2, "fd: 0 name: %s %s", ttyname(0), isatty(0) ? "is a tty" : "");
+	move_cursor_to(0, ++i);
+	ft_dprintf(2, "fd: 1 name: %s %s", ttyname(0), isatty(1) ? "is a tty" : "");
+	move_cursor_to(0, ++i);
+	ft_dprintf(2, "fd: 2 name: %s %s", ttyname(0), isatty(2) ? "is a tty" : "");
+	while (c != 'q')
+		read(slot, &c, 1);
+}
+
 int		main(int argc, char **argv)
 {
 	t_ft_select	fts;
@@ -56,7 +79,8 @@ int		main(int argc, char **argv)
 		if (init_termcap(&fts))
 			clean_exit(&fts);
 		initialize_terminal(&fts);
-		ft_select(&fts);
+		test_tty();
+		/* ft_select(&fts); */
 		clean_exit(&fts);
 	}
 	return (0);
