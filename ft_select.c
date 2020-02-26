@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/26 18:20:53 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/26 20:18:14 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,14 @@ static void	parse_key(char *key, t_ft_select *fts)
 		else if (is(key, KEY_RIGHT))
 			control(KEY_RIGHT, fts->reader.page, fts, key);
 	}
+	else if (key[0] == 'j')
+		control(KEY_DOWN, fts->reader.page, fts, key);
+	else if (key[0] == 'k')
+		control(KEY_UP, fts->reader.page, fts, key);
+	else if (key[0] == 'h')
+		control(KEY_LEFT, fts->reader.page, fts, key);
+	else if (key[0] == 'l')
+		control(KEY_RIGHT, fts->reader.page, fts, key);
 	else if (is(key, KEY_SPACE))
 		control(KEY_SPACE, fts->reader.page, fts, key);
 	else if (is(key, KEY_BACKSPACE))
