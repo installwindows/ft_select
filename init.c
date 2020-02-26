@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 19:38:41 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/26 23:32:49 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/26 23:55:23 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	initialize_terminal(t_ft_select *fts)
 	tputs(tgetstr("vi", NULL), 42, ft_putcap);
 	fts->term.height = tgetnum("li");
 	fts->term.width = tgetnum("co");
+	fts->term.read_fd = ttyslot();
 }
 
 static void	check_termcaps(t_ft_select *fts)

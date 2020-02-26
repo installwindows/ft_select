@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:28:56 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/26 23:52:21 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/26 23:56:41 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ int		main(int argc, char **argv)
 		if (init_termcap(&fts))
 			clean_exit(&fts);
 		initialize_terminal(&fts);
-		test_tty();
-		/* ft_select(&fts); */
+		/* test_tty(); */
+		ft_select(&fts);
 		clean_exit(&fts);
 	}
 	return (0);
