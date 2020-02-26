@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/26 21:49:06 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/26 21:52:03 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,23 @@ static void	control(int key_code, t_page *page, t_ft_select *fts, char *key)
 static int	is(const char *input, int key_code)
 {
 	if (key_code == KEY_UP)
-		return !strcmp(input, T_KEY_UP) || !strcmp(input, T_T_KEY_UP);
+		return !ft_strcmp(input, T_KEY_UP) || !ft_strcmp(input, T_T_KEY_UP);
 	else if (key_code == KEY_DOWN)
-		return !strcmp(input, T_KEY_DOWN) || !strcmp(input, T_T_KEY_DOWN);
+		return !ft_strcmp(input, T_KEY_DOWN) || !ft_strcmp(input, T_T_KEY_DOWN);
 	else if (key_code == KEY_LEFT)
-		return !strcmp(input, T_KEY_LEFT) || !strcmp(input, T_T_KEY_LEFT);
+		return !ft_strcmp(input, T_KEY_LEFT) || !ft_strcmp(input, T_T_KEY_LEFT);
 	else if (key_code == KEY_RIGHT)
-		return !strcmp(input, T_KEY_RIGHT) || !strcmp(input, T_T_KEY_RIGHT);
+		return !ft_strcmp(input, T_KEY_RIGHT) || !ft_strcmp(input, T_T_KEY_RIGHT);
 	else if (key_code == KEY_SPACE)
-		return !strcmp(input, " ");
+		return !ft_strcmp(input, " ");
 	else if (key_code == KEY_BACKSPACE)
-		return !strcmp(input, "\x7F");
+		return !ft_strcmp(input, "\x7F");
 	else if (key_code == KEY_DELETE)
-		return !strcmp(input, "\x7e\x5b\x33");
+		return !ft_strcmp(input, "\x7e\x5b\x33");
 	else if (key_code == KEY_PAGE_UP)
-		return !strcmp(input, "\x7e\x5b\x35");
+		return !ft_strcmp(input, "\x7e\x5b\x35");
 	else if (key_code == KEY_PAGE_DOWN)
-		return !strcmp(input, "\x7e\x5b\x36");
+		return !ft_strcmp(input, "\x7e\x5b\x36");
 	return (0);
 }
 
