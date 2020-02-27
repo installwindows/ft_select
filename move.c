@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 01:12:44 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/26 18:05:29 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/27 21:00:08 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	change_highlighted(t_case *new, t_ft_select *fts)
 	if (fts->reader.box->word->selected)
 		appearance(fts->reader.box->word->value, FTS_REVERSE_VIDEO);
 	else
-		ft_printf("%s", fts->reader.box->word->value);
+		ft_dprintf(2, "%s", fts->reader.box->word->value);
 	move_cursor_to(new->x, new->y);
 	fts->reader.box = new;
 	fts->reader.word = new->word;
