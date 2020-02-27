@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/26 23:55:47 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/27 22:45:20 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ void	move_cursor_to(int, int);
 // page.c
 void	set_reader_case(t_reader *);
 t_page	*find_word_page(t_page *, t_word *);
+void	free_pages(t_book *, t_page *);
 // resize.c
 void	handle_resize(t_ft_select *);
 

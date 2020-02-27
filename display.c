@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 21:23:13 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/26 23:32:20 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/27 22:48:28 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,8 @@ static void	init_book(t_book *book, t_ft_select *fts)
 
 void	init_display(t_ft_select *fts)
 {
+	if (fts->book.pages)
+		free_pages(&fts->book, fts->book.pages);
 	init_book(&fts->book, fts);
 	init_reader(fts);
 }

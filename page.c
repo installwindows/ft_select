@@ -6,11 +6,28 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 20:26:23 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 18:03:28 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/27 22:44:56 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
+
+void	free_pages(t_book *book, t_page *pages)
+{
+	t_page	*del;
+	int		i;
+
+	while (pages)
+	{
+		i = 0;
+		while (i < book->yw)
+			free(pages->cases[i++]);
+		free(pages->cases);
+		del = pages;
+		free(del);
+		pages = pages->next;
+	}
+}
 
 t_page	*find_word_page(t_page *pages, t_word *word)
 {

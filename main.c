@@ -6,18 +6,22 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:28:56 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/26 23:56:41 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/27 22:50:58 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
+void	free_fts(t_ft_select *fts)
+{
+	free_pages(&fts->book, fts->book.pages);
+	free_words(fts->word_list);
+}
 
 void	clean_exit(t_ft_select *fts)
 {
-	// TODO: free more stuff
-	free_words(fts->word_list);
 	reset_terminal(fts);
+	free_fts(fts);
 	exit(0);
 }
 
@@ -35,8 +39,8 @@ void	return_exit(t_ft_select *fts)
 			ft_printf("%s%s", i++ ? " " : "", word->value);
 		word = word->next;
 	}
+	free_fts(fts);
 	exit(0);
-	/* clean_exit(fts); */
 }
 
 void	test_tty(void)
