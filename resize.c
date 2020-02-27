@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 00:41:47 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/26 23:56:22 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/27 20:57:22 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	wait_resize(t_ft_select *fts)
 	{
 		if (c == 'q' || c == '\e')
 			clean_exit(fts);
-		read(fts->term.read_fd, &c, 1);
+		read(0, &c, 1);
 		check_signals(fts);
 		if (fts->term.width > fts->book.longest_word + 2 && fts->term.height > 2)
 			break ;

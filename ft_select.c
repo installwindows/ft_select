@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/26 23:56:06 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/27 20:57:31 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void		ft_select(t_ft_select *fts)
 	ft_memset(key, 0, 4);
 	while (key[0] != 'q')
 	{
-		read(fts->term.read_fd, key, 3);
+		read(0, key, 3);
 		parse_key(key, fts);
 		check_signals(fts);
 	}
