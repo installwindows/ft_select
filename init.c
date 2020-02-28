@@ -6,13 +6,13 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 19:38:41 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/28 22:39:14 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/28 22:48:56 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void	raw_terminal_mode() {
+static void	raw_terminal_mode() {
 	struct termios	tattr;
 
 	tcgetattr(STDIN_FILENO, &tattr);
@@ -24,7 +24,7 @@ void	raw_terminal_mode() {
 	return ;
 }
 
-void	default_terminal_mode() {
+static void	default_terminal_mode() {
 	struct termios	tattr;
 
 	tcgetattr(STDIN_FILENO, &tattr);
@@ -32,24 +32,6 @@ void	default_terminal_mode() {
 	tattr.c_oflag |= OPOST;
 	tcsetattr(STDIN_FILENO, TCSADRAIN, &tattr);
 	return ;
-}
-
-void	initialize_terminal(t_ft_select *fts)
-{
-	tcgetattr(0, &fts->term.oldtio);
-	fts->term.newtio = fts->term.oldtio;
-	/* fts->term.newtio.c_lflag &= ~ICANON; */
-	/* fts->term.newtio.c_lflag &= ~ECHO; */
-	/* fts->term.newtio.c_cc[VMIN] = 0; */
-	/* fts->term.newtio.c_cc[VTIME] = 2; */
-	/* fts->term.newtio.c_oflag &= ~OPOST; */
-	/* tcsetattr(0, TCSADRAIN, &fts->term.newtio); */
-	raw_terminal_mode();
-	tputs(tgetstr("ti", NULL), 42, ft_putcap);
-	tputs(tgetstr("vi", NULL), 42, ft_putcap);
-	fts->term.height = tgetnum("li");
-	fts->term.width = tgetnum("co");
-	fts->term.read_fd = ttyslot();
 }
 
 static void	check_termcaps(t_ft_select *fts)
@@ -83,14 +65,13 @@ void	reset_terminal(t_ft_select *fts)
 {
 	tputs(tgetstr("ve", NULL), 42, ft_putcap);
 	tputs(tgetstr("te", NULL), 42, ft_putcap);
-	/* tcsetattr(0, TCSADRAIN, &fts->term.oldtio); */
 	if (fts)
 		default_terminal_mode();
 }
 
 void	set_terminal(t_ft_select *fts)
 {
-	/* tcsetattr(0, TCSADRAIN, &fts->term.newtio); */
+	// maybe redo init_termcap?
 	if (fts)
 		raw_terminal_mode();
 	tputs(tgetstr("ti", NULL), 42, ft_putcap);

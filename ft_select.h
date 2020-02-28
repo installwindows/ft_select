@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/27 23:05:54 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/28 22:49:16 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,7 @@ typedef struct		s_term
 {
 	int				width;
 	int				height;
-	struct termios	oldtio;
-	struct termios	newtio;
 	char			*mw[16];
-	int				read_fd;
 }					t_term;
 
 typedef struct		s_case

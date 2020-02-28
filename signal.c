@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 18:39:35 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/28 22:32:25 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/28 22:44:50 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ static void	signal_handler(int sig)
 
 static void	sigtstp_handler(t_ft_select *fts)
 {
+	struct termios	tattr;
 	char	k[2];
 
-	k[0] = fts->term.newtio.c_cc[VSUSP];
+	tcgetattr(STDIN_FILENO, &tattr);
+	k[0] = tattr.c_cc[VSUSP];
 	k[1] = '\0';
 	reset_terminal(fts);
 	signal(SIGTSTP, SIG_DFL);
