@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/28 22:58:08 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/29 00:44:44 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,6 @@ void	delete_word(t_word **, t_word *);
 int		get_word_list_size(t_word *);
 // init.c
 void	initialize_terminal(t_ft_select *);
-int		init_termcap(t_ft_select *);
 void	reset_terminal();
 t_word	*get_word_no(t_word *, int);
 // signal.c
@@ -154,12 +153,13 @@ void	display_debug_info(t_ft_select *);
 void	underline(char *);
 void	reverse_video(char *);
 void	appearance(char *, int);
+int		check_termcaps(void);
+void	move_cursor_to(int, int);
 // control.c
 void	handle_space(t_ft_select *);
 void	handle_delete(t_ft_select *);
 void	handle_page_up(t_ft_select *);
 void	handle_page_down(t_ft_select *);
-void	move_cursor_to(int, int);
 // page.c
 void	set_reader_case(t_reader *);
 t_page	*find_word_page(t_page *, t_word *);

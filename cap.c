@@ -6,11 +6,26 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 01:39:08 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/26 23:32:28 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/29 00:44:26 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
+
+int		check_termcaps(void)
+{
+	return
+		!tgetstr("us", NULL) ||
+		!tgetstr("ue", NULL) ||
+		!tgetstr("mr", NULL) ||
+		!tgetstr("me", NULL) ||
+		!tgetstr("cm", NULL) ||
+		!tgetstr("ve", NULL) ||
+		!tgetstr("te", NULL) ||
+		!tgetstr("ti", NULL) ||
+		!tgetstr("vi", NULL) ||
+		!tgetstr("cl", NULL);
+}
 
 void	underline(char *str)
 {
