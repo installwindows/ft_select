@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 19:38:41 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/28 22:48:56 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/28 22:57:47 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,18 @@ int		init_termcap(t_ft_select *fts)
 	return (err);
 }
 
-void	reset_terminal(t_ft_select *fts)
+void	reset_terminal()
 {
 	tputs(tgetstr("ve", NULL), 42, ft_putcap);
 	tputs(tgetstr("te", NULL), 42, ft_putcap);
-	if (fts)
-		default_terminal_mode();
+	default_terminal_mode();
 }
 
 void	set_terminal(t_ft_select *fts)
 {
-	// maybe redo init_termcap?
-	if (fts)
-		raw_terminal_mode();
+	if (init_termcap(fts))
+		clean_exit(fts);
+	raw_terminal_mode();
 	tputs(tgetstr("ti", NULL), 42, ft_putcap);
 	tputs(tgetstr("vi", NULL), 42, ft_putcap);
 }

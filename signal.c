@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 18:39:35 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/28 22:44:50 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/28 22:59:00 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	signal_handler(int sig)
 	g_signals[sig] = 1;
 }
 
-static void	sigtstp_handler(t_ft_select *fts)
+static void	sigtstp_handler()
 {
 	struct termios	tattr;
 	char	k[2];
@@ -25,7 +25,7 @@ static void	sigtstp_handler(t_ft_select *fts)
 	tcgetattr(STDIN_FILENO, &tattr);
 	k[0] = tattr.c_cc[VSUSP];
 	k[1] = '\0';
-	reset_terminal(fts);
+	reset_terminal();
 	signal(SIGTSTP, SIG_DFL);
 	ioctl(0, TIOCSTI, k);
 }
@@ -37,7 +37,7 @@ void		check_signals(t_ft_select *fts)
 	if (g_signals[SIGTSTP])
 	{
 		g_signals[SIGTSTP] = 0;
-		sigtstp_handler(fts);
+		sigtstp_handler();
 	}
 	if (g_signals[SIGCONT])
 	{

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:28:56 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/28 22:46:43 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/28 22:57:54 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ int		main(int argc, char **argv)
 		fts.word_list = create_words_list(argc, argv);
 		fts.book.longest_word = get_longest_word(fts.word_list);
 		init_signals();
-		if (init_termcap(&fts))
-			clean_exit(&fts);
 		/* test_tty(); */
 		ft_select(&fts);
 		clean_exit(&fts);

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/28 22:49:16 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/28 22:58:08 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int		get_word_list_size(t_word *);
 // init.c
 void	initialize_terminal(t_ft_select *);
 int		init_termcap(t_ft_select *);
-void	reset_terminal(t_ft_select *);
+void	reset_terminal();
 t_word	*get_word_no(t_word *, int);
 // signal.c
 void	init_signals(void);
