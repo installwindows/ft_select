@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 18:39:35 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/25 00:55:10 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/28 22:32:25 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	sigtstp_handler(t_ft_select *fts)
 
 	k[0] = fts->term.newtio.c_cc[VSUSP];
 	k[1] = '\0';
-	tcsetattr(0, TCSANOW, &fts->term.oldtio);
+	reset_terminal(fts);
 	signal(SIGTSTP, SIG_DFL);
 	ioctl(0, TIOCSTI, k);
 }
@@ -41,8 +41,8 @@ void		check_signals(t_ft_select *fts)
 	{
 		g_signals[SIGCONT] = 0;
 		signal(SIGTSTP, signal_handler);
-		tcsetattr(0, TCSANOW, &fts->term.newtio);
-		tputs(tgetstr("cl", NULL), 42, ft_putcap);
+		set_terminal(fts);
+		handle_resize(fts);
 	}
 	if (g_signals[SIGQUIT])
 		clean_exit(fts);

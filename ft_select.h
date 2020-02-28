@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/27 22:45:20 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/27 23:05:54 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ t_word	*get_word_no(t_word *, int);
 // signal.c
 void	init_signals(void);
 void	check_signals(t_ft_select *);
+void	set_terminal(t_ft_select *);
 // utils.c
 int		ft_putcap(int);
 int		get_longest_word(t_word *words);
