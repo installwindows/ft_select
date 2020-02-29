@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 21:23:13 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/29 15:39:08 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/29 15:46:49 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,12 @@ static t_page	*add_page(t_book *book, int index)
 	return (page);
 }
 
-static void init_book_pages(t_book *book)
+static void init_book_pages(t_book *book, t_page *head, t_page *prev, int wc)
 {
 	t_page	**cur;
-	t_page	*head;
-	t_page	*prev;
-	int		wc;
 	int		i;
 
-	wc = 0;
 	i = 0;
-	head = NULL;
-	prev = NULL;
 	while (wc < book->word_list_size)
 	{
 		if (head == NULL)
@@ -72,7 +66,7 @@ static void	init_book(t_book *book, t_ft_select *fts)
 	book->yw_max = fts->term.height / 2 - 1;
 	book->xw = book->xw_max;
 	book->yw = book->yw_max;
-	init_book_pages(book);
+	init_book_pages(book, NULL, NULL, 0);
 }
 
 void	display(t_ft_select *fts)
