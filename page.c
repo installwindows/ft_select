@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 20:26:23 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/27 22:44:56 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/29 01:05:25 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	free_pages(t_book *book, t_page *pages)
 			free(pages->cases[i++]);
 		free(pages->cases);
 		del = pages;
-		free(del);
 		pages = pages->next;
+		free(del);
 	}
 }
 
