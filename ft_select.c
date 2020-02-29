@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/28 22:47:32 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/29 15:50:53 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,37 +15,21 @@
 static void	control(int key_code, t_page *page, t_ft_select *fts, char *key)
 {
 	if (key_code == KEY_UP)
-	{
 		move(0, -1, page, fts);
-	}
 	else if (key_code == KEY_DOWN)
-	{
 		move(0, 1, page, fts);
-	}
 	else if (key_code == KEY_LEFT)
-	{
 		move(-1, 0, page, fts);
-	}
 	else if (key_code == KEY_RIGHT)
-	{
 		move(1, 0, page, fts);
-	}
 	else if (key_code == KEY_SPACE)
-	{
 		handle_space(fts);
-	}
 	else if (key_code & (KEY_BACKSPACE | KEY_DELETE))
-	{
 		handle_delete(fts);
-	}
 	else if (key_code == KEY_PAGE_UP)
-	{
 		handle_page_up(fts);
-	}
 	else if (key_code == KEY_PAGE_DOWN)
-	{
 		handle_page_down(fts);
-	}
 	ft_memset(key, 0, 4);
 }
 
@@ -72,24 +56,9 @@ static int	is(const char *input, int key_code)
 	return (0);
 }
 
-static void	parse_key(char *key, t_ft_select *fts)
+static void	parse_more_key(char *key, t_ft_select *fts)
 {
-	if (key[0] == '\0')
-		return ;
-	if (key[0] == '\e')
-	{
-		if (is(key, KEY_UP))
-			control(KEY_UP, fts->reader.page, fts, key);
-		else if (is(key, KEY_DOWN))
-			control(KEY_DOWN, fts->reader.page, fts, key);
-		else if (is(key, KEY_LEFT))
-			control(KEY_LEFT, fts->reader.page, fts, key);
-		else if (is(key, KEY_RIGHT))
-			control(KEY_RIGHT, fts->reader.page, fts, key);
-		else if (key[1] == '\0')
-			clean_exit(fts);
-	}
-	else if (key[0] == 'j')
+	if (key[0] == 'j')
 		control(KEY_DOWN, fts->reader.page, fts, key);
 	else if (key[0] == 'k')
 		control(KEY_UP, fts->reader.page, fts, key);
@@ -109,6 +78,27 @@ static void	parse_key(char *key, t_ft_select *fts)
 		control(KEY_PAGE_DOWN, fts->reader.page, fts, key);
 	else if (key[0] == '\n')
 		return_exit(fts);
+}
+
+static void	parse_key(char *key, t_ft_select *fts)
+{
+	if (key[0] == '\0')
+		return ;
+	if (key[0] == '\e')
+	{
+		if (is(key, KEY_UP))
+			control(KEY_UP, fts->reader.page, fts, key);
+		else if (is(key, KEY_DOWN))
+			control(KEY_DOWN, fts->reader.page, fts, key);
+		else if (is(key, KEY_LEFT))
+			control(KEY_LEFT, fts->reader.page, fts, key);
+		else if (is(key, KEY_RIGHT))
+			control(KEY_RIGHT, fts->reader.page, fts, key);
+		else if (key[1] == '\0')
+			clean_exit(fts);
+	}
+	else
+		parse_more_key(key, fts);
 }
 
 void		ft_select(t_ft_select *fts)
