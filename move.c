@@ -6,13 +6,13 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 01:12:44 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/27 21:00:08 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/29 15:11:53 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-static void	change_highlighted(t_case *new, t_ft_select *fts)
+static void	change_highlighted(t_case *newb, t_ft_select *fts)
 {
 	int		modes;
 
@@ -21,9 +21,9 @@ static void	change_highlighted(t_case *new, t_ft_select *fts)
 		appearance(fts->reader.box->word->value, FTS_REVERSE_VIDEO);
 	else
 		ft_dprintf(2, "%s", fts->reader.box->word->value);
-	move_cursor_to(new->x, new->y);
-	fts->reader.box = new;
-	fts->reader.word = new->word;
+	move_cursor_to(newb->x, newb->y);
+	fts->reader.box = newb;
+	fts->reader.word = newb->word;
 	modes = FTS_UNDERLINE;
 	if (fts->reader.box->word->selected)
 		modes |= FTS_REVERSE_VIDEO;
