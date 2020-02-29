@@ -6,60 +6,11 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 21:23:13 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/27 22:48:28 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/29 01:53:20 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
-
-// set the x, y position of the box on the screen (x and y represent characters position)
-static void		set_case(t_case *box, t_word *word, int x, int y, t_book *book)
-{
-	box->word = word;
-	box->x = x * book->longest_word + (x + 1) * 2;
-	box->y = (y * 2) + 1;
-	box->active = 1;
-}
-
-// return a 2d array of t_case
-static t_case	**get_cases(t_book *book, t_page *page, int word_index)
-{
-	t_case	**cases;
-	t_word	*words;
-	int		x;
-	int		y;
-	int		i;
-
-	words = get_word_no(book->word_list, word_index);
-	page->word_list = words;
-	cases = (t_case**)ft_memalloc(sizeof(t_case*) * book->yw);
-	y = 0;
-	while (y < book->yw)
-		cases[y++] = (t_case*)ft_memalloc(sizeof(t_case) * book->xw);
-	x = 0;
-	i = 0;
-	while (x < book->xw)
-	{
-		y = 0;
-		while (y < book->yw)
-		{
-			if (i++ >= page->max_words || !words)
-			{
-				page->mid_height = y - 1;
-				page->mid_width = x - 1;
-				page->word_width = x;
-				page->word_height = x > 0 ? book->yw - 1 : y;
-				page->word_count = i;
-				return (cases);
-			}
-			set_case(&cases[y][x], words, x, y, book);
-			words = words->next;
-			y++;
-		}
-		x++;
-	}
-	return (cases);
-}
 
 static t_page	*add_page(t_book *book, int index)
 {
@@ -73,7 +24,8 @@ static t_page	*add_page(t_book *book, int index)
 	page->mid_width = book->xw - 1;
 	page->mid_height = book->yw - 1;
 	page->word_count = page->max_words;
-	page->cases = get_cases(book, page, index * page->max_words);
+	page->book = book;
+	set_cases(book, page, index * page->max_words);
 	return (page);
 }
 
