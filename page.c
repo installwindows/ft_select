@@ -6,13 +6,13 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 20:26:23 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/29 01:05:25 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/29 15:37:53 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-void	free_pages(t_book *book, t_page *pages)
+void		free_pages(t_book *book, t_page *pages)
 {
 	t_page	*del;
 	int		i;
@@ -29,7 +29,7 @@ void	free_pages(t_book *book, t_page *pages)
 	}
 }
 
-t_page	*find_word_page(t_page *pages, t_word *word)
+t_page		*find_word_page(t_page *pages, t_word *word)
 {
 	int		i;
 	t_word	*w;
@@ -49,7 +49,7 @@ t_page	*find_word_page(t_page *pages, t_word *word)
 	return (NULL);
 }
 
-void	set_reader_case(t_reader *reader)
+void		set_reader_case(t_reader *reader)
 {
 	int		i;
 	int		j;
@@ -70,4 +70,40 @@ void	set_reader_case(t_reader *reader)
 		}
 		i++;
 	}
+}
+
+static void	print_word(t_ft_select *fts, t_case *box)
+{
+	if (box->active)
+	{
+		move_cursor_to(box->x, box->y);
+		if (box->word->selected && fts->reader.box == box)
+			appearance(box->word->value, FTS_REVERSE_VIDEO | FTS_UNDERLINE);
+		else if (box->word->selected)
+			reverse_video(box->word->value);
+		else if (fts->reader.box == box)
+			underline(box->word->value);
+		else
+			ft_dprintf(2, "%s", box->word->value);
+	}
+}
+
+void		display_page(t_page *page, t_ft_select *fts)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < fts->book.yw)
+	{
+		j = 0;
+		while (j < fts->book.xw)
+		{
+			print_word(fts, &page->cases[i][j]);
+			j++;
+		}
+		i++;
+	}
+	move_cursor_to(fts->term.width - ft_numlen(fts->book.nb_page) * 2 - 4, fts->term.height - 1);
+	ft_dprintf(2, "%d / %d", page->page_no + 1, fts->book.nb_page);
 }
