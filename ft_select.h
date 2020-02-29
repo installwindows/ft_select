@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/29 00:44:44 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/02/29 01:55:08 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct		s_page
 {
 	t_case			**cases;
 	t_word			*word_list;
+	struct s_book	*book;
 	int				mid_width;
 	int				mid_height;
 	int				word_width;
@@ -166,5 +167,7 @@ t_page	*find_word_page(t_page *, t_word *);
 void	free_pages(t_book *, t_page *);
 // resize.c
 void	handle_resize(t_ft_select *);
+// case.c
+void	set_cases(t_book *, t_page *, int);
 
 #endif
