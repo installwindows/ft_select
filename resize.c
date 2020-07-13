@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 00:41:47 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/27 20:57:22 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/13 18:15:55 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,13 @@
 
 static void	wait_resize(t_ft_select *fts)
 {
-	char	c;
-
 	tputs(tgetstr("cl", NULL), 42, ft_putcap);
 	ft_printf("Terminal size too small. Waiting for resize...");
-	c = 0;
-	while (1)
-	{
-		if (c == 'q' || c == '\e')
-			clean_exit(fts);
-		read(0, &c, 1);
-		check_signals(fts);
-		if (fts->term.width > fts->book.longest_word + 2 && fts->term.height > 2)
-			break ;
-	}
+	fts->wait_resize = 1;
 }
 
 void	handle_resize(t_ft_select *fts)
 {
-	// check if size is ok
-	// reset fts->term size
-	// display again
 	struct winsize	w;
 	int				width;
 	int				height;
@@ -44,11 +30,12 @@ void	handle_resize(t_ft_select *fts)
 	height = w.ws_row;
 	width = w.ws_col;
 	lgw = fts->book.longest_word;
-	if (width > lgw + 2 && height > 2)
+	if (width > lgw + 2 && height > 3)
 	{
 		fts->term.height = height;
 		fts->term.width = width;
 		display(fts);
+		fts->wait_resize = 0;
 	}
 	else
 		wait_resize(fts);

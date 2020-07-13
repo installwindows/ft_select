@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/07/13 17:25:53 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/13 18:04:36 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ typedef struct		s_ft_select
 	t_book			book;
 	t_reader		reader;
 	int				displayed;
+	int				wait_resize;
 }					t_ft_select; 
 
 // list.c

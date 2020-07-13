@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/29 15:50:53 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/13 18:07:26 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,10 @@ void		ft_select(t_ft_select *fts)
 	while (key[0] != 'q')
 	{
 		read(0, key, 3);
-		parse_key(key, fts);
+		if (!fts->wait_resize)
+			parse_key(key, fts);
+		else if (key[0] == '\e')
+			break ;
 		check_signals(fts);
 	}
 }
