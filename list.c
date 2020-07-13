@@ -5,8 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/07/13 17:21:57 by varnaud           #+#    #+#             */
+/*   Updated: 2020/07/13 17:31:00 by varnaud          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 17:22:24 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/23 21:05:06 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/13 17:20:00 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +46,23 @@ void	free_words(t_word *words)
 	}
 }
 
-t_word	*create_words_list(int argc, char **argv)
+t_word	*create_words_list(char **word_list)
 {
 	t_word	*head;
 	t_word	*prev;
-	t_word	*cur;
+	t_word	**cur;
 
-	head = NULL;
-	prev = NULL;
-	if (argc-- > 1)
+	head = add_word(*word_list);
+	word_list++;
+	prev = head;
+	cur = &head->next;
+	while (*word_list)
 	{
-		head = add_word(*++argv);
-		cur = head;
-		while (--argc)
-		{
-			cur->next = add_word(*++argv);
-			cur->prev = prev;
-			prev = cur;
-			cur = cur->next;
-		}
+		*cur = add_word(*word_list);
+		(*cur)->prev = prev;
+		prev = *cur;
+		cur = &(*cur)->next;
+		word_list++;
 	}
 	return (head);
 }
