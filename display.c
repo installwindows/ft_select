@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 21:23:13 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/29 15:46:49 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/13 17:49:09 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,28 +29,26 @@ static t_page	*add_page(t_book *book, int index)
 	return (page);
 }
 
-static void init_book_pages(t_book *book, t_page *head, t_page *prev, int wc)
+static void init_book_pages(t_book *book)
 {
+	t_page	*head;
+	t_page	*prev;
 	t_page	**cur;
+	int		word_count;
 	int		i;
 
 	i = 0;
-	while (wc < book->word_list_size)
+	head = add_page(book, i++);
+	prev = head;
+	cur = &head->next;
+	word_count = head->word_count;
+	while (word_count < book->word_list_size)
 	{
-		if (head == NULL)
-		{
-			head = add_page(book, i++);
-			prev = head;
-			cur = &head->next;
-		}
-		else
-		{
-			*cur = add_page(book, i++);
-			(*cur)->prev = prev;
-			prev = *cur;
-			cur = &(*cur)->next;
-		}
-		wc += prev->word_count;
+		*cur = add_page(book, i++);
+		(*cur)->prev = prev;
+		prev = *cur;
+		cur = &(*cur)->next;
+		word_count += prev->word_count;
 	}
 	book->nb_page = i;
 	book->pages = head;
@@ -66,7 +64,7 @@ static void	init_book(t_book *book, t_ft_select *fts)
 	book->yw_max = fts->term.height / 2 - 1;
 	book->xw = book->xw_max;
 	book->yw = book->yw_max;
-	init_book_pages(book, NULL, NULL, 0);
+	init_book_pages(book);
 }
 
 void	display(t_ft_select *fts)
