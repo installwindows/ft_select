@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/07/13 18:07:26 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/13 18:23:00 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,27 @@ static int	is(const char *input, int key_code)
 	return (0);
 }
 
-static void	parse_more_key(char *key, t_ft_select *fts)
+static void	parse_escape_key(char *key, t_ft_select *fts)
 {
-	if (key[0] == 'j')
+	if (is(key, KEY_UP))
+		control(KEY_UP, fts->reader.page, fts, key);
+	else if (is(key, KEY_DOWN))
+		control(KEY_DOWN, fts->reader.page, fts, key);
+	else if (is(key, KEY_LEFT))
+		control(KEY_LEFT, fts->reader.page, fts, key);
+	else if (is(key, KEY_RIGHT))
+		control(KEY_RIGHT, fts->reader.page, fts, key);
+	else if (key[1] == '\0')
+		clean_exit(fts);
+}
+
+static void	parse_key(char *key, t_ft_select *fts)
+{
+	if (key[0] == '\0')
+		return ;
+	if (key[0] == '\e')
+		parse_escape_key(key, fts);
+	else if (key[0] == 'j')
 		control(KEY_DOWN, fts->reader.page, fts, key);
 	else if (key[0] == 'k')
 		control(KEY_UP, fts->reader.page, fts, key);
@@ -78,27 +96,6 @@ static void	parse_more_key(char *key, t_ft_select *fts)
 		control(KEY_PAGE_DOWN, fts->reader.page, fts, key);
 	else if (key[0] == '\n')
 		return_exit(fts);
-}
-
-static void	parse_key(char *key, t_ft_select *fts)
-{
-	if (key[0] == '\0')
-		return ;
-	if (key[0] == '\e')
-	{
-		if (is(key, KEY_UP))
-			control(KEY_UP, fts->reader.page, fts, key);
-		else if (is(key, KEY_DOWN))
-			control(KEY_DOWN, fts->reader.page, fts, key);
-		else if (is(key, KEY_LEFT))
-			control(KEY_LEFT, fts->reader.page, fts, key);
-		else if (is(key, KEY_RIGHT))
-			control(KEY_RIGHT, fts->reader.page, fts, key);
-		else if (key[1] == '\0')
-			clean_exit(fts);
-	}
-	else
-		parse_more_key(key, fts);
 }
 
 void		ft_select(t_ft_select *fts)
