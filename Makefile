@@ -6,7 +6,7 @@
 #    By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/28 21:10:31 by varnaud           #+#    #+#              #
-#    Updated: 2020/07/14 20:47:08 by varnaud          ###   ########.fr        #
+#    Updated: 2020/07/14 21:52:41 by varnaud          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,11 @@ LIBFLAGS=-Llibft -lft -ltermcap
 
 all: $(NAME)
 
-$(NAME): libft.a $(OBJ)
+$(NAME): $(OBJ)
+	make -C libft
 	$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(LIBFLAGS)
 
 $(OBJ): ft_select.h
-
-libft.a:
-	make -C libft
 
 clean:
 	make -C libft clean
