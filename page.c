@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 20:26:23 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/29 15:37:53 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 13:16:21 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_page		*find_word_page(t_page *pages, t_word *word)
 {
 	int		i;
 	t_word	*w;
-	
+
 	while (pages)
 	{
 		w = pages->word_list;
@@ -104,6 +104,7 @@ void		display_page(t_page *page, t_ft_select *fts)
 		}
 		i++;
 	}
-	move_cursor_to(fts->term.width - ft_numlen(fts->book.nb_page) * 2 - 4, fts->term.height - 1);
+	move_cursor_to(fts->term.width - ft_numlen(fts->book.nb_page) * 2 - 4,
+													fts->term.height - 1);
 	ft_dprintf(2, "%d / %d", page->page_no + 1, fts->book.nb_page);
 }

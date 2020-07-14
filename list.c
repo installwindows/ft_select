@@ -5,20 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/13 17:21:57 by varnaud           #+#    #+#             */
-/*   Updated: 2020/07/13 17:31:00 by varnaud          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   list.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 17:22:24 by varnaud           #+#    #+#             */
-/*   Updated: 2020/07/13 17:20:00 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 13:33:36 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +20,6 @@ t_word	*add_word(char *value)
 	word->len = ft_strlen(value);
 	word->value = value;
 	return (word);
-}
-
-void	free_words(t_word *words)
-{
-	t_word	*tmp;
-
-	while (words)
-	{
-		tmp = words->next;
-		free(words);
-		words = tmp;
-	}
 }
 
 t_word	*create_words_list(char **word_list)

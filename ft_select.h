@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/07/13 18:04:36 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 13:36:51 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,56 +120,40 @@ typedef struct		s_ft_select
 	int				wait_resize;
 }					t_ft_select; 
 
-// list.c
 t_word	*create_words_list(char **);
-void	free_words(t_word *);
 t_word	*add_word(char *);
 void	delete_word(t_word **, t_word *);
 int		get_word_list_size(t_word *);
-// init.c
 void	initialize_terminal(t_ft_select *);
 void	reset_terminal();
 t_word	*get_word_no(t_word *, int);
-// signal.c
 void	init_signals(void);
 void	check_signals(t_ft_select *);
 void	set_terminal(t_ft_select *);
-// utils.c
 int		ft_putcap(int);
 int		get_longest_word(t_word *words);
-// ft_select.c
 void	ft_select(t_ft_select *);
 int		update_display(t_ft_select *);
-// printer.c
 void	dummy_print_words_list(t_word *words);
-// move.c
 void	move(int, int, t_page *, t_ft_select *);
-// main.c
 void	clean_exit(t_ft_select *);
 void	return_exit(t_ft_select *);
-// display.c
 void	display(t_ft_select *);
-// debug.c
 void	display_debug_info(t_ft_select *);
-// cap.c
 void	underline(char *);
 void	reverse_video(char *);
 void	appearance(char *, int);
 int		check_termcaps(void);
 void	move_cursor_to(int, int);
-// control.c
 void	handle_space(t_ft_select *);
 void	handle_delete(t_ft_select *);
 void	handle_page_up(t_ft_select *);
 void	handle_page_down(t_ft_select *);
-// page.c
 void	display_page(t_page *, t_ft_select *);
 void	set_reader_case(t_reader *);
 t_page	*find_word_page(t_page *, t_word *);
 void	free_pages(t_book *, t_page *);
-// resize.c
 void	handle_resize(t_ft_select *);
-// case.c
 void	set_cases(t_book *, t_page *, int);
 
 #endif

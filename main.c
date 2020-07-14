@@ -6,11 +6,23 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:28:56 by varnaud           #+#    #+#             */
-/*   Updated: 2020/07/13 17:25:41 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 13:34:44 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
+
+static void	free_words(t_word *words)
+{
+	t_word	*tmp;
+
+	while (words)
+	{
+		tmp = words->next;
+		free(words);
+		words = tmp;
+	}
+}
 
 static void	free_fts(t_ft_select *fts)
 {

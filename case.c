@@ -6,19 +6,11 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 01:35:52 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/29 15:27:40 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 13:04:32 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
-
-static void		set_case(t_case *box, t_word *word, int x, int y, t_book *book)
-{
-	box->word = word;
-	box->x = x * book->longest_word + (x + 1) * 2;
-	box->y = (y * 2) + 1;
-	box->active = 1;
-}
 
 static t_case	**init_cases(t_book *book)
 {
@@ -48,7 +40,10 @@ static int		set_column(t_page *page, t_word **words, int x, int *i)
 			page->word_count = *i;
 			return (1);
 		}
-		set_case(&page->cases[y][x], *words, x, y, page->book);
+		page->cases[y][x].word = *words;
+		page->cases[y][x].x = x * page->book->longest_word + (x + 1) * 2;
+		page->cases[y][x].y = (y * 2) + 1;
+		page->cases[y][x].active = 1;
 		*words = (*words)->next;
 		y++;
 	}
@@ -73,4 +68,3 @@ void			set_cases(t_book *book, t_page *page, int word_index)
 		x++;
 	}
 }
-

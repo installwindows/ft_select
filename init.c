@@ -6,13 +6,14 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 19:38:41 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/29 00:46:14 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 13:14:22 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_select.h"
 
-static void	raw_terminal_mode() {
+static void	raw_terminal_mode(void)
+{
 	struct termios	tattr;
 
 	tcgetattr(STDIN_FILENO, &tattr);
@@ -24,7 +25,8 @@ static void	raw_terminal_mode() {
 	return ;
 }
 
-static void	default_terminal_mode() {
+static void	default_terminal_mode(void)
+{
 	struct termios	tattr;
 
 	tcgetattr(STDIN_FILENO, &tattr);
@@ -34,7 +36,7 @@ static void	default_terminal_mode() {
 	return ;
 }
 
-static int	init_termcap()
+static int	init_termcap(void)
 {
 	char	term_buffer[2048];
 	char	*term_type;
@@ -54,7 +56,7 @@ static int	init_termcap()
 	return (err);
 }
 
-void		reset_terminal()
+void		reset_terminal(void)
 {
 	tputs(tgetstr("ve", NULL), 42, ft_putcap);
 	tputs(tgetstr("te", NULL), 42, ft_putcap);

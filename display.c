@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 21:23:13 by varnaud           #+#    #+#             */
-/*   Updated: 2020/07/13 17:49:09 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 13:09:06 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static t_page	*add_page(t_book *book, int index)
 	return (page);
 }
 
-static void init_book_pages(t_book *book)
+static void		init_book_pages(t_book *book)
 {
 	t_page	*head;
 	t_page	*prev;
@@ -54,7 +54,7 @@ static void init_book_pages(t_book *book)
 	book->pages = head;
 }
 
-static void	init_book(t_book *book, t_ft_select *fts)
+static void		init_book(t_book *book, t_ft_select *fts)
 {
 	ft_memset(book, 0, sizeof(t_book));
 	book->word_list = fts->word_list;
@@ -67,7 +67,7 @@ static void	init_book(t_book *book, t_ft_select *fts)
 	init_book_pages(book);
 }
 
-void	display(t_ft_select *fts)
+void			display(t_ft_select *fts)
 {
 	if (fts->book.pages)
 		free_pages(&fts->book, fts->book.pages);
@@ -85,7 +85,6 @@ void	display(t_ft_select *fts)
 		fts->reader.page = find_word_page(fts->book.pages, fts->reader.word);
 		set_reader_case(&fts->reader);
 	}
-	/* display_debug_info(fts); */
 	tputs(tgetstr("cl", NULL), 42, ft_putcap);
 	display_page(fts->reader.page, fts);
 }

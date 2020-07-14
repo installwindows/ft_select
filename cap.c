@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 01:39:08 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/29 00:44:26 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 12:59:09 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		check_termcaps(void)
 {
-	return
+	return (
 		!tgetstr("us", NULL) ||
 		!tgetstr("ue", NULL) ||
 		!tgetstr("mr", NULL) ||
@@ -24,7 +24,7 @@ int		check_termcaps(void)
 		!tgetstr("te", NULL) ||
 		!tgetstr("ti", NULL) ||
 		!tgetstr("vi", NULL) ||
-		!tgetstr("cl", NULL);
+		!tgetstr("cl", NULL));
 }
 
 void	underline(char *str)

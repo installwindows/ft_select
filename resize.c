@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/25 00:41:47 by varnaud           #+#    #+#             */
-/*   Updated: 2020/07/13 18:15:55 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 13:18:26 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ static void	wait_resize(t_ft_select *fts)
 	fts->wait_resize = 1;
 }
 
-void	handle_resize(t_ft_select *fts)
+void		handle_resize(t_ft_select *fts)
 {
 	struct winsize	w;
 	int				width;
 	int				height;
 	int				lgw;
 
-    ioctl(0, TIOCGWINSZ, &w);
+	ioctl(0, TIOCGWINSZ, &w);
 	height = w.ws_row;
 	width = w.ws_col;
 	lgw = fts->book.longest_word;
@@ -40,4 +40,3 @@ void	handle_resize(t_ft_select *fts)
 	else
 		wait_resize(fts);
 }
-

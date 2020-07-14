@@ -6,7 +6,7 @@
 #    By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/28 21:10:31 by varnaud           #+#    #+#              #
-#    Updated: 2020/02/29 01:55:24 by varnaud          ###   ########.fr        #
+#    Updated: 2020/07/14 12:52:45 by varnaud          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,3 +36,9 @@ $(OBJ): ft_select.h
 
 libft: libft/libft.h
 	make -C libft
+
+clean:
+	rm -rf $(OBJ)
+
+fclean: clean
+	rm -rf $(NAME)

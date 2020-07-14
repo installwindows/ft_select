@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 18:39:35 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/28 22:59:00 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 13:29:10 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static void	signal_handler(int sig)
 	g_signals[sig] = 1;
 }
 
-static void	sigtstp_handler()
+static void	sigtstp_handler(void)
 {
 	struct termios	tattr;
-	char	k[2];
+	char			k[2];
 
 	tcgetattr(STDIN_FILENO, &tattr);
 	k[0] = tattr.c_cc[VSUSP];
@@ -32,7 +32,7 @@ static void	sigtstp_handler()
 
 void		check_signals(t_ft_select *fts)
 {
-	if (g_signals[SIGINT])
+	if (g_signals[SIGINT] || g_signals[SIGQUIT] || g_signals[SIGTERM])
 		clean_exit(fts);
 	if (g_signals[SIGTSTP])
 	{
@@ -46,8 +46,6 @@ void		check_signals(t_ft_select *fts)
 		set_terminal(fts);
 		handle_resize(fts);
 	}
-	if (g_signals[SIGQUIT])
-		clean_exit(fts);
 	if (g_signals[SIGWINCH])
 	{
 		g_signals[SIGWINCH] = 0;
@@ -63,13 +61,14 @@ void		init_signals(void)
 	i = 1;
 	while (i < 32)
 	{
-		/* if (i != SIGQUIT) */
-		/* signal(i, SIG_IGN); */
+		if (i != SIGKILL)
+			signal(i, SIG_IGN);
 		i++;
 	}
 	signal(SIGINT, signal_handler);
 	signal(SIGTSTP, signal_handler);
 	signal(SIGCONT, signal_handler);
-	/* signal(SIGQUIT, signal_handler); */
+	signal(SIGQUIT, signal_handler);
+	signal(SIGTERM, signal_handler);
 	signal(SIGWINCH, signal_handler);
 }
