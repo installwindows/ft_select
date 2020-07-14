@@ -6,14 +6,12 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/01 14:19:46 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/03 21:54:48 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 21:20:00 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# define LARGEST(a, b) (a > b ? a : b)
-# define SMALLEST(a, b) (a < b ? a : b)
 # include <stdarg.h>
 # include <wchar.h>
 # define F_HASH 1

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 18:10:14 by varnaud           #+#    #+#             */
-/*   Updated: 2017/03/21 18:25:04 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 21:17:23 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int			handle_wcstr(t_flags *flags, wchar_t *wcstr)
 		size = ft_wcstrlen(wcstr);
 		if (flags->f & F_PRECISION)
 		{
-			size = SMALLEST(ft_wcstrlen(wcstr), flags->precision);
+			size = ft_smallest(ft_wcstrlen(wcstr), flags->precision);
 			size = correction(wcstr, size);
 		}
 		if (flags->f & F_WIDTH)

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 18:36:25 by varnaud           #+#    #+#             */
-/*   Updated: 2017/03/21 19:56:16 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 21:13:02 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ static int	handle_flags(t_flags *f, char *r, int nbprint, double d)
 	else
 	{
 		if (f->f & F_WIDTH)
-			while (nbprint + f->precision + LARGEST(ft_strichr(r, '.')
+			while (nbprint + f->precision + ft_largest(ft_strichr(r, '.')
 				+ 1, 0) + ((f->f & F_PLUS || f->f & F_SPACE) &&
 				d >= 0 ? 1 : 0) < f->width)
 				nbprint += ft_putchar_fd(f->f & F_ZERO ? '0' : ' ', f->fd);

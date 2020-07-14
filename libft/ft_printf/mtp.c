@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/17 19:08:45 by varnaud           #+#    #+#             */
-/*   Updated: 2017/01/27 02:18:31 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 21:15:11 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char		*mtp(const char *n1, const char *n2)
 
 	shift = ft_strlen(n1) - (ft_strichr(n1, '.') >= 0 ? ft_strichr(n1, '.') + 1
 			: (signed int)ft_strlen(n1));
-	shift = LARGEST(ft_strlen(n2) - (ft_strichr(n2, '.') >= 0 ?
+	shift = ft_largest(ft_strlen(n2) - (ft_strichr(n2, '.') >= 0 ?
 			ft_strichr(n2, '.') + 1 : (signed int)ft_strlen(n2)),
 			(unsigned long)shift);
 	d1 = shiftdot(n1, shift);

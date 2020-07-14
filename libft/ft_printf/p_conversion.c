@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/04 01:05:40 by varnaud           #+#    #+#             */
-/*   Updated: 2017/03/21 19:48:31 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 21:14:28 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	print_p(t_flags *f, unsigned long long p, int n)
 	}
 	else
 	{
-		n += 2 + LARGEST(f->precision, ft_unumlen_base(p, 16));
+		n += 2 + ft_largest(f->precision, ft_unumlen_base(p, 16));
 		if (f->f & F_WIDTH && f->width > n)
 			n += ft_putnchar_fd(' ', f->width - n, f->fd);
 		ft_putstr_fd("0x", f->fd);

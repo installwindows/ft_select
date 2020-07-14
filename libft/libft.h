@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/26 23:08:11 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/26 23:28:47 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 21:16:00 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <wchar.h>
 # include <stdarg.h>
 # include <errno.h>
-# define BLANK(c) (c == ' ' || c == '\t' || c == '\v' || c == '\r' || c == '\n')
 
 int					ft_printf(const char *format, ...);
 int					ft_dprintf(int fd, const char *format, ...);
@@ -144,5 +143,7 @@ char				*ft_strndup(const char *s1, size_t n);
 int					ft_find_min_max(int *array, int size, int *min, int *max);
 int					ft_natoi(char *s, int *n);
 double				ft_sqrt(double n);
+int					ft_largest(int a, int b);
+int					ft_smallest(int a, int b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/22 21:41:44 by varnaud           #+#    #+#             */
-/*   Updated: 2017/04/22 22:51:50 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 20:53:20 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ static char	**cleanup(char **a, int size)
 
 static int	setup_line(char *line, int i, int count)
 {
-	while (line[i] && BLANK(line[i]))
+	while (line[i] && ft_iswhitespace(line[i]))
 		line[i++] = '\0';
 	if (line[i])
 	{
 		count++;
-		while (line[i] && !BLANK(line[i]))
+		while (line[i] && !ft_iswhitespace(line[i]))
 			i++;
 	}
 	else

@@ -1,37 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt.c                                          :+:      :+:    :+:   */
+/*   ft_smallest.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/17 18:13:26 by varnaud           #+#    #+#             */
-/*   Updated: 2020/07/14 20:50:03 by varnaud          ###   ########.fr       */
+/*   Created: 2020/07/14 21:16:23 by varnaud           #+#    #+#             */
+/*   Updated: 2020/07/14 21:17:04 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-double	ft_sqrt(double n)
+int		ft_smallest(int a, int b)
 {
-	double	low;
-	double	mid;
-	double	high;
-	int		i;
-
-	low = 0;
-	high = n;
-	i = 0;
-	while (i < 100)
-	{
-		mid = (low + high) / 2;
-		if (mid * mid == n)
-			return (mid);
-		else if (mid * mid > n)
-			high = mid;
-		else
-			low = mid;
-		i++;
-	}
-	return (mid);
+	return (a > b ? b : a);
 }
