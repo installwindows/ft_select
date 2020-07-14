@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 21:30:28 by varnaud           #+#    #+#             */
-/*   Updated: 2020/07/14 13:11:19 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 15:25:03 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,19 @@ static void	control(int key_code, t_page *page, t_ft_select *fts, char *key)
 	ft_memset(key, 0, 4);
 }
 
-static int	is(const char *input, int key_code)
+static int	is(const char *input, int key_code, t_ft_select *fts)
 {
 	if (key_code == KEY_UP)
-		return (!ft_strcmp(input, T_KEY_UP) || !ft_strcmp(input, T_T_KEY_UP));
+		return (!ft_strcmp(input, fts->keys.up) ||
+				!ft_strcmp(input, T_T_KEY_UP));
 	else if (key_code == KEY_DOWN)
-		return (!ft_strcmp(input, T_KEY_DOWN)
+		return (!ft_strcmp(input, fts->keys.down)
 				|| !ft_strcmp(input, T_T_KEY_DOWN));
 	else if (key_code == KEY_LEFT)
-		return (!ft_strcmp(input, T_KEY_LEFT)
+		return (!ft_strcmp(input, fts->keys.left)
 				|| !ft_strcmp(input, T_T_KEY_LEFT));
 	else if (key_code == KEY_RIGHT)
-		return (!ft_strcmp(input, T_KEY_RIGHT)
+		return (!ft_strcmp(input, fts->keys.right)
 				|| !ft_strcmp(input, T_T_KEY_RIGHT));
 	else if (key_code == KEY_SPACE)
 		return (!ft_strcmp(input, " "));
@@ -61,13 +62,13 @@ static int	is(const char *input, int key_code)
 
 static void	parse_escape_key(char *key, t_ft_select *fts)
 {
-	if (is(key, KEY_UP))
+	if (is(key, KEY_UP, fts))
 		control(KEY_UP, fts->reader.page, fts, key);
-	else if (is(key, KEY_DOWN))
+	else if (is(key, KEY_DOWN, fts))
 		control(KEY_DOWN, fts->reader.page, fts, key);
-	else if (is(key, KEY_LEFT))
+	else if (is(key, KEY_LEFT, fts))
 		control(KEY_LEFT, fts->reader.page, fts, key);
-	else if (is(key, KEY_RIGHT))
+	else if (is(key, KEY_RIGHT, fts))
 		control(KEY_RIGHT, fts->reader.page, fts, key);
 	else if (key[1] == '\0')
 		clean_exit(fts);
@@ -87,15 +88,15 @@ static void	parse_key(char *key, t_ft_select *fts)
 		control(KEY_LEFT, fts->reader.page, fts, key);
 	else if (key[0] == 'l')
 		control(KEY_RIGHT, fts->reader.page, fts, key);
-	else if (is(key, KEY_SPACE))
+	else if (is(key, KEY_SPACE, fts))
 		control(KEY_SPACE, fts->reader.page, fts, key);
-	else if (is(key, KEY_BACKSPACE))
+	else if (is(key, KEY_BACKSPACE, fts))
 		control(KEY_DELETE, fts->reader.page, fts, key);
-	else if (is(key, KEY_DELETE))
+	else if (is(key, KEY_DELETE, fts))
 		control(KEY_DELETE, fts->reader.page, fts, key);
-	else if (is(key, KEY_PAGE_UP))
+	else if (is(key, KEY_PAGE_UP, fts))
 		control(KEY_PAGE_UP, fts->reader.page, fts, key);
-	else if (is(key, KEY_PAGE_DOWN))
+	else if (is(key, KEY_PAGE_DOWN, fts))
 		control(KEY_PAGE_DOWN, fts->reader.page, fts, key);
 	else if (key[0] == '\n')
 		return_exit(fts);
@@ -106,6 +107,7 @@ void		ft_select(t_ft_select *fts)
 	char	key[4];
 
 	set_terminal(fts);
+	init_keys(fts);
 	handle_resize(fts);
 	ft_memset(key, 0, 4);
 	while (key[0] != 'q')
