@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 20:26:23 by varnaud           #+#    #+#             */
-/*   Updated: 2020/07/14 13:16:21 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 19:41:34 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void		set_reader_case(t_reader *reader)
 				reader->bxi = j;
 				reader->byi = i;
 				reader->box = &reader->page->cases[i][j];
+				return ;
 			}
 			j++;
 		}

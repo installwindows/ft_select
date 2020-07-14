@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 01:12:44 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/29 15:11:53 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 20:22:09 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,25 @@ void		move(int x, int y, t_page *page, t_ft_select *fts)
 	if (y)
 		move_y(y, page, fts);
 	change_highlighted(&page->cases[fts->reader.byi][fts->reader.bxi], fts);
+}
+
+void		move_to_next_word(t_ft_select *fts)
+{
+	t_page	*new_page;
+	t_word	*next;
+
+	if (fts->reader.word->next)
+		next = fts->reader.word->next;
+	else
+		next = fts->word_list;
+	new_page = find_word_page(fts->book.pages, next);
+	if (new_page != fts->reader.page)
+		handle_page_up(fts);
+	else
+	{
+		fts->reader.word = next;
+		set_reader_case(&fts->reader);
+		change_highlighted(
+			&fts->reader.page->cases[fts->reader.byi][fts->reader.bxi], fts);
+	}
 }

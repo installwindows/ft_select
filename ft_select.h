@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/07/14 18:02:54 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 20:14:03 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,17 @@
 # define T_T_KEY_LEFT "\e[D"
 # define KEY_UP 1
 # define KEY_DOWN 2
-# define KEY_LEFT 3
-# define KEY_RIGHT 4
-# define KEY_SPACE 5
-# define KEY_BACKSPACE 6
-# define KEY_ESCAPE 7
-# define KEY_DELETE 8
-# define KEY_RETURN 9
-# define KEY_PAGE_UP 10
-# define KEY_PAGE_DOWN 11
+# define KEY_LEFT 4
+# define KEY_RIGHT 8
+# define KEY_SPACE 16
+# define KEY_BACKSPACE 32
+# define KEY_ESCAPE 64
+# define KEY_DELETE 128
+# define KEY_RETURN 256
+# define KEY_PAGE_UP 512
+# define KEY_PAGE_DOWN 1024
 # define FTS_MARGIN 2
+# define FTS_CLEAR 0
 # define FTS_UNDERLINE 1
 # define FTS_REVERSE_VIDEO 2
 
@@ -162,5 +163,6 @@ void				free_pages(t_book *up, t_page *never);
 void				handle_resize(t_ft_select *gonna);
 void				set_cases(t_book *let, t_page *you, int down);
 void				init_keys(t_ft_select *never);
+void				move_to_next_word(t_ft_select *gonna);
 
 #endif
