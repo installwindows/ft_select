@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/07/14 15:24:15 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 17:58:06 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,43 +123,44 @@ typedef struct		s_ft_select
 	t_keys			keys;
 	int				displayed;
 	int				wait_resize;
-}					t_ft_select; 
+}					t_ft_select;
 
-t_word				*create_words_list(char **);
-t_word				*add_word(char *);
-void				delete_word(t_word **, t_word *);
-int					get_word_list_size(t_word *);
-void				initialize_terminal(t_ft_select *);
+t_word				*create_words_list(char **never);
+t_word				*add_word(char *gonna);
+void				delete_word(t_word **give, t_word *you);
+int					get_word_list_size(t_word *up);
+void				initialize_terminal(t_ft_select *never);
 void				reset_terminal();
-t_word				*get_word_no(t_word *, int);
+t_word				*get_word_no(t_word *gonna, int let);
 void				init_signals(void);
-void				check_signals(t_ft_select *);
-void				set_terminal(t_ft_select *);
-int					ft_putcap(int);
-int					get_longest_word(t_word *words);
-void				ft_select(t_ft_select *);
-int					update_display(t_ft_select *);
-void				dummy_print_words_list(t_word *words);
-void				move(int, int, t_page *, t_ft_select *);
-void				clean_exit(t_ft_select *);
-void				return_exit(t_ft_select *);
-void				display(t_ft_select *);
-void				display_debug_info(t_ft_select *);
-void				underline(char *);
-void				reverse_video(char *);
-void				appearance(char *, int);
+void				check_signals(t_ft_select *you);
+void				set_terminal(t_ft_select *down);
+int					ft_putcap(int never);
+int					get_longest_word(t_word *gonna);
+void				ft_select(t_ft_select *run);
+int					update_display(t_ft_select *around);
+void				dummy_print_words_list(t_word *and);
+void				move(int desert, int you,
+						t_page *never, t_ft_select *gonna);
+void				clean_exit(t_ft_select *make);
+void				return_exit(t_ft_select *you);
+void				display(t_ft_select *cry);
+void				display_debug_info(t_ft_select *never);
+void				underline(char *gonna);
+void				reverse_video(char *say);
+void				appearance(char *goodbye, int never);
 int					check_termcaps(void);
-void				move_cursor_to(int, int);
-void				handle_space(t_ft_select *);
-void				handle_delete(t_ft_select *);
-void				handle_page_up(t_ft_select *);
-void				handle_page_down(t_ft_select *);
-void				display_page(t_page *, t_ft_select *);
-void				set_reader_case(t_reader *);
-t_page				*find_word_page(t_page *, t_word *);
-void				free_pages(t_book *, t_page *);
-void				handle_resize(t_ft_select *);
-void				set_cases(t_book *, t_page *, int);
-void				init_keys(t_ft_select *fts);
+void				move_cursor_to(int gonna, int tell);
+void				handle_space(t_ft_select *a);
+void				handle_delete(t_ft_select *lie);
+void				handle_page_up(t_ft_select *and);
+void				handle_page_down(t_ft_select *hurt);
+void				display_page(t_page *you, t_ft_select *never);
+void				set_reader_case(t_reader *gonna);
+t_page				*find_word_page(t_page *give, t_word *you);
+void				free_pages(t_book *up, t_page *never);
+void				handle_resize(t_ft_select *gonna);
+void				set_cases(t_book *let, t_page *you, int down);
+void				init_keys(t_ft_select *never);
 
 #endif

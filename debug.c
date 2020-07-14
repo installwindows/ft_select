@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 23:39:40 by varnaud           #+#    #+#             */
-/*   Updated: 2020/02/22 23:49:28 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 17:59:12 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ void	display_debug_info(t_ft_select *fts)
 	tputs(tgoto(tgetstr("cm", NULL), 0, i++), 0, ft_putcap);
 	ft_printf("nb_page: %d", fts->book.nb_page);
 	tputs(tgoto(tgetstr("cm", NULL), 0, i++), 0, ft_putcap);
-	ft_printf("page 1: ww, wh, mw, mh: %d, %d, %d, %d", fts->book.pages->word_width, fts->book.pages->word_height, fts->book.pages->mid_width, fts->book.pages->mid_height);
+	ft_printf("page 1: ww, wh, mw, mh: %d, %d, %d, %d",
+		fts->book.pages->word_width, fts->book.pages->word_height,
+		fts->book.pages->mid_width, fts->book.pages->mid_height);
 	c = 0;
 	while (c != 'q')
 		read(1, &c, 1);
