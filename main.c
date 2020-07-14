@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 17:28:56 by varnaud           #+#    #+#             */
-/*   Updated: 2020/07/14 15:19:04 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 18:03:30 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	free_fts(t_ft_select *fts)
 
 void		clean_exit(t_ft_select *fts)
 {
-	reset_terminal(fts);
+	reset_terminal();
 	free_fts(fts);
 	exit(0);
 }
@@ -42,7 +42,7 @@ void		return_exit(t_ft_select *fts)
 	t_word	*word;
 	int		i;
 
-	reset_terminal(fts);
+	reset_terminal();
 	word = fts->word_list;
 	i = 0;
 	while (word)

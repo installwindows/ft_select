@@ -6,7 +6,7 @@
 /*   By: varnaud <varnaud@student.42.us.org>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/28 21:29:34 by varnaud           #+#    #+#             */
-/*   Updated: 2020/07/14 17:58:06 by varnaud          ###   ########.fr       */
+/*   Updated: 2020/07/14 18:02:54 by varnaud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ t_word				*add_word(char *gonna);
 void				delete_word(t_word **give, t_word *you);
 int					get_word_list_size(t_word *up);
 void				initialize_terminal(t_ft_select *never);
-void				reset_terminal();
+void				reset_terminal(void);
 t_word				*get_word_no(t_word *gonna, int let);
 void				init_signals(void);
 void				check_signals(t_ft_select *you);
